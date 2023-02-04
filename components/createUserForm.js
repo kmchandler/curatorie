@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Form from 'react-bootstrap/Form';
+// import Form from 'react-bootstrap/Form';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { useAuth } from '../utils/context/authContext';
@@ -62,20 +62,6 @@ function CreateUserForm({ obj }) {
         <br />
         <input type="url" name="image_url" value={formInput.image_url} className="form-control" placeholder="image url" onChange={handleChange} />
         <h5 className="favGenresHeader">favorite genres</h5>
-        <div className="favGenresList">
-          {genres.map((genre) => (
-            <div key={genre.id} className="mb-3">
-              <Form.Check
-                type="checkbox"
-                id={genre.id}
-                label={genre.genre_name}
-                defaultChecked={checkedGenre.find((cg) => cg?.genre_name === genre.genre_name)}
-                onChange={handleClickGenre}
-                name={genre.genre_name}
-              />
-            </div>
-          ))}
-        </div>
         <div className="submitProfileButtonDiv">
           <button type="submit" className="submitProfileBtn" onSubmit={handleSubmit}>
             submit
