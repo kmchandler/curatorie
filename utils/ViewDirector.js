@@ -1,24 +1,37 @@
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import Router from 'next/router';
 import { useAuth } from './context/authContext';
 import Loading from '../components/Loading';
 import Signin from '../components/Signin';
 import NavBar from '../components/NavBar';
-import RegisterForm from '../components/RegisterForm';
+import { getUserByUid } from '../api/userData';
 
 const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) => {
-  const { user, userLoading, updateUser } = useAuth();
+  const { user, userLoading } = useAuth();
+  const [profile, setProfile] = useState();
 
-  // if user state is null, then show loader
+  useEffect(() => {
+    if (user) {
+      getUserByUid(user.uid).then((result) => {
+        if (!result.id) {
+          Router.push('/users/new');
+        } else if (result) {
+          setProfile(result);
+        }
+      });
+    }
+  }, [user]);
+
   if (userLoading) {
     return <Loading />;
   }
 
-  // what the user should see if they are logged in
-  if (user) {
+  if (user && profile) {
     return (
       <>
-        <NavBar /> {/* NavBar only visible if user is logged in and is in every view */}
-        <div className="container">{'valid' in user ? <RegisterForm user={user} updateUser={updateUser} /> : <Component {...pageProps} />}</div>
+        <NavBar navObj={profile} />
+        <div className="container"><Component {...pageProps} /></div>
       </>
     );
   }
