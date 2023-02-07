@@ -28,7 +28,6 @@ ProfileCard.propTypes = {
     last_name: PropTypes.string,
     username: PropTypes.string,
     image_url: PropTypes.string,
-    email: PropTypes.string,
   }),
 };
 
