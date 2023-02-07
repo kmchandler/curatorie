@@ -23,7 +23,6 @@ const createUser = (user) => new Promise((resolve, reject) => {
     username: user.username,
     image_url: user.imageUrl,
     email: user.email,
-    color_scheme: user.colorScheme,
   };
   fetch(`${dbUrl}/users`, {
     method: 'POST',
