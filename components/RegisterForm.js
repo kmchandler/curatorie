@@ -1,31 +1,50 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
 import { registerUser } from '../utils/auth';
 
 function RegisterForm({ user, updateUser }) {
-  const [formData, setFormData] = useState({
-    bio: '',
+  const [formInput, setFormInput] = useState({
     uid: user.uid,
+    firstName: '',
+    lastName: '',
+    username: '',
+    image_url: '',
+    email: '',
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    registerUser(formData).then(() => updateUser(user.uid));
+    registerUser(formInput).then(() => updateUser(user.uid));
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormInput((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>User Info</Form.Label>
-        <Form.Control as="textarea" name="bio" required placeholder="Enter your user info" onChange={({ target }) => setFormData((prev) => ({ ...prev, [target.name]: target.value }))} />
-        <Form.Text className="text-muted">Enter your user info</Form.Text>
-      </Form.Group>
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
-    </Form>
+    <div className="profilePage profilePageForm">
+      <form onSubmit={handleSubmit}>
+        <h2 className="updateProfileHeader">profile</h2>
+        <input required type="text" name="firstName" value={formInput.firstName} className="form-control" placeholder="first name" onChange={handleChange} />
+        <br />
+        <input required type="text" name="lastName" value={formInput.lastName} className="form-control" placeholder="last name" onChange={handleChange} />
+        <br />
+        <input required type="text" name="username" value={formInput.username} className="form-control" placeholder="username" onChange={handleChange} />
+        <br />
+        <input type="url" name="imageUrl" value={formInput.imageUrl} className="form-control" placeholder="image url" onChange={handleChange} />
+        <br />
+        <input type="email" name="email" value={formInput.email} className="form-control" placeholder="email" onChange={handleChange} />
+        <div className="submitProfileButtonDiv">
+          <button type="submit" className="submitProfileBtn" onSubmit={handleSubmit}>
+            submit
+          </button>
+        </div>
+      </form>
+    </div>
   );
 }
 

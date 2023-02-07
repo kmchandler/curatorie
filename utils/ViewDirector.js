@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import Router from 'next/router';
 import { useAuth } from './context/authContext';
 import Loading from '../components/Loading';
-import Signin from '../components/Signin';
 import NavBar from '../components/NavBar';
 import { getUserByUid } from '../api/userData';
+import RegisterForm from '../components/RegisterForm';
 
 const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) => {
   const { user, userLoading } = useAuth();
@@ -36,7 +36,7 @@ const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) 
     );
   }
 
-  return <Signin />;
+  return <RegisterForm user={user} />;
 };
 
 export default ViewDirectorBasedOnUserAuthStatus;
