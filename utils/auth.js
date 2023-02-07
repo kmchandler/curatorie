@@ -18,13 +18,15 @@ const checkUser = (uid) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const registerUser = (user, userInfo) => new Promise((resolve, reject) => {
+const registerUser = (userInfo) => new Promise((resolve, reject) => {
   const userObj = {
+    uid: userInfo?.uid,
     first_name: userInfo?.firstName,
     last_name: userInfo?.lastName,
     username: userInfo?.username,
     image_url: userInfo?.ImageUrl,
-    uid: userInfo?.uid,
+    email: userInfo?.email,
+    color_scheme: userInfo?.color_scheme,
   };
   fetch(`${clientCredentials.databaseURL}/register`, {
     method: 'POST',

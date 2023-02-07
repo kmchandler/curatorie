@@ -1,6 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
-import CreateUserForm from '../../components/CreateUserForm';
+import RegisterForm from '../../components/RegisterForm';
 
   <Head>
     <title>curatorie:users</title>
@@ -9,6 +9,6 @@ import CreateUserForm from '../../components/CreateUserForm';
 
 export default function createUser() {
   return (
-    <CreateUserForm />
+    <RegisterForm />
   );
 }
