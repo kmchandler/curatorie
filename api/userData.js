@@ -17,11 +17,13 @@ const getUserByUid = (uid) => new Promise((resolve, reject) => {
 
 const createUser = (user) => new Promise((resolve, reject) => {
   const userObj = {
+    uid: user.uid,
     first_name: user.firstName,
     last_name: user.lastName,
     username: user.username,
     image_url: user.imageUrl,
-    uid: user.uid,
+    email: user.email,
+    color_scheme: user.colorScheme,
   };
   fetch(`${dbUrl}/users`, {
     method: 'POST',
