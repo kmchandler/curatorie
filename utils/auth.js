@@ -9,6 +9,7 @@ const checkUser = (uid) => new Promise((resolve, reject) => {
       uid,
     }),
     headers: {
+      Authorization: uid,
       'Content-Type': 'application/json',
       Accept: 'application/json',
     },
@@ -18,9 +19,18 @@ const checkUser = (uid) => new Promise((resolve, reject) => {
 });
 
 const registerUser = (userInfo) => new Promise((resolve, reject) => {
+  const userObj = {
+    uid: userInfo?.uid,
+    first_name: userInfo?.firstName,
+    last_name: userInfo?.lastName,
+    username: userInfo?.username,
+    image_url: userInfo?.ImageUrl,
+    email: userInfo?.email,
+    color_scheme: userInfo?.color_scheme,
+  };
   fetch(`${clientCredentials.databaseURL}/register`, {
     method: 'POST',
-    body: JSON.stringify(userInfo),
+    body: JSON.stringify(userObj),
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
@@ -40,7 +50,7 @@ const signOut = () => {
 };
 
 export {
-  signIn, //
+  signIn,
   signOut,
   checkUser,
   registerUser,

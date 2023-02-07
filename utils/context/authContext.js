@@ -1,7 +1,5 @@
-// Context API Docs: https://beta.reactjs.org/learn/passing-data-deeply-with-context
-
 import React, {
-  createContext, //
+  createContext,
   useContext,
   useEffect,
   useMemo,
@@ -12,20 +10,15 @@ import { firebase } from '../client';
 
 const AuthContext = createContext();
 
-AuthContext.displayName = 'AuthContext'; // Context object accepts a displayName string property. React DevTools uses this string to determine what to display for the context. https://reactjs.org/docs/context.html#contextdisplayname
+AuthContext.displayName = 'AuthContext';
 
 const AuthProvider = (props) => {
   const [user, setUser] = useState(null);
   const [oAuthUser, setOAuthUser] = useState(null);
 
-  // there are 3 states for the user:
-  // null = application initial state, not yet loaded
-  // false = user is not logged in, but the app has loaded
-  // an object/value = user is logged in
-
-  const updateUser = useMemo(
-    () => (uid) => checkUser(uid).then((gamerInfo) => {
-      setUser({ fbUser: oAuthUser, ...gamerInfo });
+  const onUpdate = useMemo(
+    () => (uid) => checkUser(uid).then((userInfo) => {
+      setUser({ fbUser: oAuthUser, ...userInfo });
     }),
     [oAuthUser],
   );
@@ -34,12 +27,12 @@ const AuthProvider = (props) => {
     firebase.auth().onAuthStateChanged((fbUser) => {
       if (fbUser) {
         setOAuthUser(fbUser);
-        checkUser(fbUser.uid).then((gamerInfo) => {
+        checkUser(fbUser.uid).then((userInfo) => {
           let userObj = {};
-          if ('null' in gamerInfo) {
-            userObj = gamerInfo;
+          if ('null' in userInfo) {
+            userObj = userInfo;
           } else {
-            userObj = { fbUser, uid: fbUser.uid, ...gamerInfo };
+            userObj = { fbUser, uid: fbUser.uid, ...userInfo };
           }
           setUser(userObj);
         });
@@ -54,12 +47,12 @@ const AuthProvider = (props) => {
     // https://reactjs.org/docs/hooks-reference.html#usememo
     () => ({
       user,
-      updateUser,
+      onUpdate,
       userLoading: user === null || oAuthUser === null,
       // as long as user === null, will be true
       // As soon as the user value !== null, value will be false
     }),
-    [user, oAuthUser, updateUser],
+    [user, oAuthUser, onUpdate],
   );
 
   return <AuthContext.Provider value={value} {...props} />;
