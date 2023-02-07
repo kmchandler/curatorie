@@ -18,10 +18,10 @@ const getUserByUid = (uid) => new Promise((resolve, reject) => {
 const createUser = (user) => new Promise((resolve, reject) => {
   const userObj = {
     uid: user.uid,
-    first_name: user.firstName,
-    last_name: user.lastName,
+    first_name: user.first_name,
+    last_name: user.last_name,
     username: user.username,
-    image_url: user.imageUrl,
+    image_url: user.image_url,
     email: user.email,
   };
   fetch(`${dbUrl}/users`, {
@@ -41,11 +41,12 @@ const getUserByUserId = (id) => new Promise((resolve, reject) => {
     .then((data) => {
       resolve({
         id: data.id,
+        uid: data.uid,
         first_name: data.first_name,
         last_name: data.last_name,
         username: data.username,
         image_url: data.image_url,
-        uid: data.uid,
+        email: data.email,
       });
     })
     .catch((error) => reject(error));
@@ -63,11 +64,12 @@ const deleteSingleUser = (id) => new Promise((resolve, reject) => {
 const updateUser = (user) => new Promise((resolve, reject) => {
   const userObj = {
     id: user.id,
+    uid: user.uid,
     first_name: user.first_name,
     last_name: user.last_name,
     username: user.username,
     image_url: user.image_url,
-    uid: user.uid,
+    email: user.email,
   };
   fetch(`${dbUrl}/users/${user.id}`, {
     method: 'PUT',

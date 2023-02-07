@@ -19,7 +19,6 @@ export default function Profile() {
 
   const getTheUser = async () => {
     const fetchedProfile = await getUserByUid(user.uid);
-    console.warn(user);
     setProfile(fetchedProfile);
   };
 
