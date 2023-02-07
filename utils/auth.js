@@ -20,13 +20,11 @@ const checkUser = (uid) => new Promise((resolve, reject) => {
 
 const registerUser = (user, userInfo) => new Promise((resolve, reject) => {
   const userObj = {
-    uid: userInfo?.uid,
     first_name: userInfo?.firstName,
     last_name: userInfo?.lastName,
     username: userInfo?.username,
     image_url: userInfo?.ImageUrl,
-    email: userInfo?.email,
-    color_scheme: userInfo?.color_scheme,
+    uid: userInfo?.uid,
   };
   fetch(`${clientCredentials.databaseURL}/register`, {
     method: 'POST',
