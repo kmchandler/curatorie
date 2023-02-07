@@ -1,20 +1,38 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
-import { registerUser } from '../utils/auth';
+import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
+import { getUserByUid, createUser } from '../api/userData';
 
-function RegisterForm({ user, updateUser }) {
-  const [formInput, setFormInput] = useState({
-    uid: user.uid,
-    firstName: '',
-    lastName: '',
-    username: '',
-    image_url: '',
-    email: '',
-  });
+const initialState = {
+  firstName: '',
+  lastName: '',
+  username: '',
+  imageUrl: '',
+  email: '',
+};
+
+function RegisterForm({ user, updateUser, obj }) {
+  const [formInput, setFormInput] = useState({});
+  const [, setProfile] = useState([]);
+  const router = useRouter();
+
+  useEffect(() => {
+    getUserByUid(user.uid).then(setProfile);
+    if (obj.id) {
+      setFormInput(obj);
+    }
+  }, [obj, user]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    registerUser(formInput).then(() => updateUser(user.uid));
+    if (obj.id) {
+      updateUser(formInput);
+      router.push(`/users/${obj.id}`);
+    } else {
+      const payload = { ...formInput, uid: user.uid };
+      const createdUser = createUser(payload);
+      router.push(`/users/${createdUser.id}`);
+    }
   };
 
   const handleChange = (e) => {
@@ -53,6 +71,18 @@ RegisterForm.propTypes = {
     uid: PropTypes.string.isRequired,
   }).isRequired,
   updateUser: PropTypes.func.isRequired,
+  obj: PropTypes.shape({
+    id: PropTypes.string,
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    username: PropTypes.string,
+    imageUrl: PropTypes.string,
+    email: PropTypes.string,
+  }),
+};
+
+RegisterForm.defaultProps = {
+  obj: initialState,
 };
 
 export default RegisterForm;
