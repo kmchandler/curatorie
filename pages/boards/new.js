@@ -1,5 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
+import CreateBoard from '../../components/CreateBoards';
 
   <Head>
     <title>curatorie:new board</title>
@@ -12,7 +13,7 @@ export default function newBoard() {
 // when they enter that info and hit submit, it takes them to the home page which displays all boards
   return (
     <div>
-      <h1>new board page</h1>
+      <h1><CreateBoard /></h1>
     </div>
   );
 }
