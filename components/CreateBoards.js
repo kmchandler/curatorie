@@ -64,11 +64,34 @@ export default function CreateBoard({ obj }) {
 
   if (page === 2) {
     console.warn(checkedBoardType, 'checkedBoardType');
-    return (
-      <h2>
-        Testing
-      </h2>
-    );
+    if (checkedBoardType.type === 'gift card') {
+      return (
+        <h2>
+          gift card
+        </h2>
+      );
+    }
+    if (checkedBoardType.type === 'inspo card') {
+      return (
+        <h2>
+          inspo card
+        </h2>
+      );
+    }
+    if (checkedBoardType.type === 'list card') {
+      return (
+        <h2>
+          list card
+        </h2>
+      );
+    }
+    if (checkedBoardType.type === 'purchase card') {
+      return (
+        <h2>
+          purchase card
+        </h2>
+      );
+    }
   }
 }
 
