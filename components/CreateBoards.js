@@ -7,6 +7,7 @@ import { useAuth } from '../utils/context/authContext';
 import { createBoardType, getBoardTypes } from '../api/boardTypeData';
 import getIcons from '../api/iconData';
 import { createBoard, updateBoard } from '../api/boardData';
+import { getUserByUid } from '../api/userData';
 
 const initialState = {
   boardTypes: '',
@@ -19,6 +20,7 @@ export default function CreateBoard({ obj }) {
   const [icons, setIcons] = useState([]);
   const [checkedBoardType, setCheckedBoardType] = useState([]);
   const [checkedIcon, setCheckedIcon] = useState([]);
+  const [appUser, setAppUser] = useState([]);
   const { user } = useAuth();
   const router = useRouter();
 
@@ -32,11 +34,20 @@ export default function CreateBoard({ obj }) {
     setIcons(allIcons);
   };
 
+  const getTheUser = async () => {
+    const theUser = await getUserByUid(user.uid);
+    setAppUser(theUser);
+  };
+
   useEffect(() => {
+    getTheUser();
     getTheBoardTypes();
     if (obj.id) {
       setCheckedBoardType(obj.boardTypes || []);
     }
+    // if (user) {
+    //   setFormInput({ ...formInput, user_id: appUser.id });
+    // }
     getTheIcons();
   }, [obj, user]);
 
@@ -70,9 +81,11 @@ export default function CreateBoard({ obj }) {
       updateBoard(formInput);
       router.push('/');
     } else {
+      setFormInput({ ...formInput, user_id: appUser.id });
       createBoard(formInput).then((boardObj) => {
-        const boardPromise = createBoardType(boardObj, checkedBoardType);
-        Promise.all(boardPromise).then(() => router.push('/'));
+        const payload = { type: checkedBoardType.type, board_id: boardObj.id };
+        const boardPromise = createBoardType(payload);
+        Promise.all([boardPromise]).then(() => router.push('/'));
       });
     }
   };
@@ -109,7 +122,7 @@ export default function CreateBoard({ obj }) {
         <div>Create Board</div>
         <Form>
           <Form.Group className="mb-3" controlId="boardName">
-            <Form.Control type="text" placeholder="board name" value={formInput.name} onChange={handleChange} />
+            <Form.Control name="name" type="text" placeholder="board name" value={formInput.name} onChange={handleChange} />
           </Form.Group>
 
           <div className="iconsSelect">
