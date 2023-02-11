@@ -47,24 +47,9 @@ const deleteSingleBoardType = (id) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-const updateBoardType = (boardType) => new Promise((resolve, reject) => {
-  const boardTypeObj = {
-    id: boardType.id,
-    type: boardType.type,
-    board_id: boardType.board_id,
-  };
-  fetch(`${dbUrl}/board_types/${boardTypeObj.id}`, {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(boardTypeObj),
-  })
-    .then((response) => resolve(response))
-    .catch((error) => reject(error));
-});
 export {
   createBoardType,
   deleteSingleBoardType,
-  updateBoardType,
   getBoardTypeById,
   getBoardTypes,
 };
