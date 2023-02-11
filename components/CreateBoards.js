@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import PropTypes from 'prop-types';
+import { useRouter } from 'next/router';
 import Form from 'react-bootstrap/Form';
 import { useAuth } from '../utils/context/authContext';
-import { getBoardTypes } from '../api/boardTypeData';
+import { createBoardType, getBoardTypes } from '../api/boardTypeData';
 import getIcons from '../api/iconData';
+import { createBoard, updateBoard } from '../api/boardData';
 
 const initialState = {
   boardTypes: '',
@@ -12,11 +14,13 @@ const initialState = {
 
 export default function CreateBoard({ obj }) {
   const [page, setPage] = useState(1);
+  const [formInput, setFormInput] = useState([]);
   const [boardTypes, setBoardTypes] = useState([]);
   const [icons, setIcons] = useState([]);
   const [checkedBoardType, setCheckedBoardType] = useState([]);
   const [checkedIcon, setCheckedIcon] = useState([]);
   const { user } = useAuth();
+  const router = useRouter();
 
   const getTheBoardTypes = async () => {
     const types = await getBoardTypes();
@@ -36,6 +40,14 @@ export default function CreateBoard({ obj }) {
     getTheIcons();
   }, [obj, user]);
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormInput((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
   const handleClickBoardType = (e) => {
     const newBoardTypeObj = boardTypes.find((boardType) => boardType.id.toString() === e.target.value);
     setCheckedBoardType(newBoardTypeObj);
@@ -44,6 +56,7 @@ export default function CreateBoard({ obj }) {
   const handleClickIcon = (e) => {
     const newIconObj = icons.find((icon) => icon.id.toString() === e.target.value);
     setCheckedIcon(newIconObj);
+    setFormInput({ ...formInput, icon: newIconObj.name });
   };
 
   const handleSubmitOne = (e) => {
@@ -51,37 +64,26 @@ export default function CreateBoard({ obj }) {
     setPage(page + 1);
   };
 
-  const handleSubmitGift = (e) => {
+  const handleSubmitTwo = (e) => {
     e.preventDefault();
-    // if there is a obj.id, on submit, the gift board is edited. join tables for board type cannot be edited, because the card info for each type is different
-    // if the obj.id does not exist, on submit, the new gift board is created and the new join table for board type is created, then the user is routed back to the home page
-  };
-
-  const handleSubmitInspo = (e) => {
-    e.preventDefault();
-    // if there is a obj.id, on submit, the inspo board is edited. join tables for board type cannot be edited, because the card info for each type is different
-    // if the obj.id does not exist, on submit, the new inspo board is created and the new join table for board type is created, then the user is routed back to the home page
-  };
-
-  const handleSubmitList = (e) => {
-    e.preventDefault();
-    // if there is a obj.id, on submit, the list board is edited. join tables for board type cannot be edited, because the card info for each type is different
-    // if the obj.id does not exist, on submit, the new list board is created and the new join table for board type is created, then the user is routed back to the home page
-  };
-
-  const handleSubmitPurchase = (e) => {
-    e.preventDefault();
-    // if there is a obj.id, on submit, the purchae board is edited. join tables for board type cannot be edited, because the card info for each type is different
-    // if the obj.id does not exist, on submit, the new purchae board is created and the new join table for board type is created, then the user is routed back to the home page
+    if (obj.id) {
+      updateBoard(formInput);
+      router.push('/');
+    } else {
+      createBoard(formInput).then((boardObj) => {
+        const boardPromise = createBoardType(boardObj, checkedBoardType);
+        Promise.all(boardPromise).then(() => router.push('/'));
+      });
+    }
   };
 
   if (page === 1) {
     return (
       <>
-        <h2>Select a Board Template</h2>
+        <div>Select a Board Template</div>
         <div className="boardTypeSelect">
           {boardTypes.map((boardType) => (
-            <h5 key={boardType.id} className="mb-3">
+            <div key={boardType.id} className="mb-3">
               <Form.Check
                 type="radio"
                 id={boardType.id}
@@ -91,145 +93,47 @@ export default function CreateBoard({ obj }) {
                 onChange={handleClickBoardType}
                 name="boardTypeRadio"
               />
-            </h5>
+            </div>
           ))}
         </div>
-        <h5>
+        <div>
           <button className="boardTypeButton" type="button" onClick={handleSubmitOne}>select</button>
-        </h5>
+        </div>
       </>
     );
   }
 
   if (page === 2) {
-    if (checkedBoardType.type === 'gift card') {
-      return (
-        <>
-          <h3>Create Board</h3>
-          <Form>
-            <Form.Group className="mb-3" controlId="giftBoardName">
-              <Form.Control type="text" placeholder="board name" />
-            </Form.Group>
+    return (
+      <>
+        <div>Create Board</div>
+        <Form>
+          <Form.Group className="mb-3" controlId="boardName">
+            <Form.Control type="text" placeholder="board name" value={formInput.name} onChange={handleChange} />
+          </Form.Group>
 
-            <div className="iconsSelect">
-              {icons.map((icon) => (
-                <h5 key={icon.id} className="mb-3">
-                  <Form.Check
-                    type="radio"
-                    id={icon.id}
-                    label={icon.name}
-                    defaultChecked={checkedIcon.id === icon.toString()}
-                    value={icon.id}
-                    onChange={handleClickIcon}
-                    name="IconRadio"
-                  />
-                </h5>
-              ))}
-            </div>
+          <div className="iconsSelect">
+            {icons.map((icon) => (
+              <div key={icon.id} className="mb-3">
+                <Form.Check
+                  type="radio"
+                  id={`${icon.id}_iconRadio`}
+                  label={icon.name}
+                  defaultChecked={checkedIcon.id === icon.toString()}
+                  value={icon.id}
+                  onChange={handleClickIcon}
+                  name="IconRadio"
+                />
+              </div>
+            ))}
+          </div>
 
-            <Button variant="primary" type="submit" onSubmit={handleSubmitGift}>
-              Submit
-            </Button>
-          </Form>
-        </>
-      );
-    }
-    if (checkedBoardType.type === 'inspo card') {
-      return (
-        <>
-          <h3>Create Board</h3>
-          <Form>
-            <Form.Group className="mb-3" controlId="inspoBoardName">
-              <Form.Control type="text" placeholder="board name" />
-            </Form.Group>
-
-            <div className="iconsSelect">
-              {icons.map((icon) => (
-                <h5 key={icon.id} className="mb-3">
-                  <Form.Check
-                    type="radio"
-                    id={icon.id}
-                    label={icon.name}
-                    defaultChecked={checkedIcon.id === icon.toString()}
-                    value={icon.id}
-                    onChange={handleClickIcon}
-                    name="IconRadio"
-                  />
-                </h5>
-              ))}
-            </div>
-
-            <Button variant="primary" type="submit" onSubmit={handleSubmitInspo}>
-              Submit
-            </Button>
-          </Form>
-        </>
-      );
-    }
-    if (checkedBoardType.type === 'list card') {
-      return (
-        <>
-          <h3>Create Board</h3>
-          <Form>
-            <Form.Group className="mb-3" controlId="listBoardName">
-              <Form.Control type="text" placeholder="board name" />
-            </Form.Group>
-
-            <div className="iconsSelect">
-              {icons.map((icon) => (
-                <h5 key={icon.id} className="mb-3">
-                  <Form.Check
-                    type="radio"
-                    id={icon.id}
-                    label={icon.name}
-                    defaultChecked={checkedIcon.id === icon.toString()}
-                    value={icon.id}
-                    onChange={handleClickIcon}
-                    name="IconRadio"
-                  />
-                </h5>
-              ))}
-            </div>
-
-            <Button variant="primary" type="submit" onSubmit={handleSubmitList}>
-              Submit
-            </Button>
-          </Form>
-        </>
-      );
-    }
-    if (checkedBoardType.type === 'purchase card') {
-      return (
-        <>
-          <h3>Create Board</h3>
-          <Form>
-            <Form.Group className="mb-3" controlId="purchaseBoardName">
-              <Form.Control type="text" placeholder="board name" />
-            </Form.Group>
-
-            <div className="iconsSelect">
-              {icons.map((icon) => (
-                <h5 key={icon.id} className="mb-3">
-                  <Form.Check
-                    type="radio"
-                    id={icon.id}
-                    label={icon.name}
-                    defaultChecked={checkedIcon.id === icon.toString()}
-                    value={icon.id}
-                    onChange={handleClickIcon}
-                    name="IconRadio"
-                  />
-                </h5>
-              ))}
-            </div>
-
-            <Button variant="primary" type="submit" onSubmit={handleSubmitPurchase}>
-              Submit
-            </Button>
-          </Form>
-        </>
-      );
-    }
+          <Button variant="primary" type="button" onClick={handleSubmitTwo}>
+            Submit
+          </Button>
+        </Form>
+      </>
+    );
   }
 }
 
