@@ -5,6 +5,7 @@ const dbUrl = clientCredentials.databaseURL;
 const createBoardType = (boardType) => new Promise((resolve, reject) => {
   const boardTypeObj = {
     type: boardType.type,
+    board_id: boardType.board_id,
   };
   fetch(`${dbUrl}/board_types`, {
     method: 'POST',
@@ -24,6 +25,7 @@ const getBoardTypeById = (id) => new Promise((resolve, reject) => {
       resolve({
         id: data.id,
         type: data.type,
+        board_id: data.board_id,
       });
     })
     .catch((error) => reject(error));
@@ -45,10 +47,11 @@ const deleteSingleBoardType = (id) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-const updateBoardType = (board) => new Promise((resolve, reject) => {
+const updateBoardType = (boardType) => new Promise((resolve, reject) => {
   const boardTypeObj = {
-    id: board.id,
-    type: board.type,
+    id: boardType.id,
+    type: boardType.type,
+    board_id: boardType.board_id,
   };
   fetch(`${dbUrl}/board_types/${boardTypeObj.id}`, {
     method: 'PUT',

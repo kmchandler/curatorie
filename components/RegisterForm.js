@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
-import { createUser, getUserByUserId, updateUser } from '../api/userData';
+import { createUser, getUserByUid, updateUser } from '../api/userData';
 
 const initialState = {
   firstName: '',
@@ -17,7 +17,7 @@ function RegisterForm({ user, obj }) {
   const router = useRouter();
 
   useEffect(() => {
-    getUserByUserId(user.id).then(setProfile);
+    getUserByUid(user.uid).then(setProfile);
     if (obj.id) {
       setFormInput(obj);
     }
@@ -68,7 +68,7 @@ function RegisterForm({ user, obj }) {
 
 RegisterForm.propTypes = {
   user: PropTypes.shape({
-    id: PropTypes.string.isRequired,
+    id: PropTypes.string,
     uid: PropTypes.string.isRequired,
   }).isRequired,
   obj: PropTypes.shape({
