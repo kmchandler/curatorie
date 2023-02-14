@@ -21,11 +21,12 @@ function BoardCard({
     <>
       <Card className="boardCardDiv" style={{ width: '15rem', margin: '10px', height: '12rem' }}>
         <Card.Body className="cardBody boardCardBody">
-          <hr />
-          <div className="cardDetails">
-            <p className="boardIcon">{boardObj.icon}</p>
-            <p className="boardCardType">{boardObj.name.toLowerCase()}</p>
-          </div>
+          <Link href={`/boards/${boardObj.id}`} passHref>
+            <div className="cardDetails">
+              <p className="boardIcon">{boardObj.icon}</p>
+              <p className="boardCardType">{boardObj.name.toLowerCase()}</p>
+            </div>
+          </Link>
           <div className="boardCardBtns">
             <Link href={`/boards/edit/${boardObj.id}`} passHref>
               <button type="button" className="editButton">edit</button>
