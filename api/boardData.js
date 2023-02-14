@@ -5,7 +5,6 @@ const dbUrl = clientCredentials.databaseURL;
 const createBoard = (board) => new Promise((resolve, reject) => {
   const boardObj = {
     user_id: board.user_id,
-    type: board.type,
     name: board.name,
     icon: board.icon,
   };
@@ -27,10 +26,22 @@ const getBoardById = (id) => new Promise((resolve, reject) => {
       resolve({
         id: data.id,
         user_id: data.user_id,
-        type: data.type,
         name: data.name,
         icon: data.icon,
       });
+    })
+    .catch((error) => reject(error));
+});
+
+const getBoardsByUserId = (userId) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/boards?user_id=${userId}`)
+    .then((response) => response.json())
+    .then((response) => {
+      if (response) {
+        resolve(response);
+      } else {
+        resolve([]);
+      }
     })
     .catch((error) => reject(error));
 });
@@ -48,7 +59,6 @@ const updateBoard = (board) => new Promise((resolve, reject) => {
   const boardObj = {
     id: board.id,
     user_id: board.user_id,
-    type: board.type,
     name: board.name,
     icon: board.icon,
   };
@@ -65,4 +75,5 @@ export {
   deleteSingleBoard,
   updateBoard,
   getBoardById,
+  getBoardsByUserId,
 };

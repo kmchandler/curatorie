@@ -14,6 +14,7 @@ const initialState = {
 };
 
 export default function CreateBoard({ obj }) {
+  const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [formInput, setFormInput] = useState([]);
   const [boardTypes, setBoardTypes] = useState([]);
@@ -39,17 +40,20 @@ export default function CreateBoard({ obj }) {
     setAppUser(theUser);
   };
 
+  const setup = async () => {
+    await getTheUser();
+    await getTheBoardTypes();
+    setLoading(false);
+  };
+
   useEffect(() => {
-    getTheUser();
-    getTheBoardTypes();
     if (obj.id) {
-      setCheckedBoardType(obj.boardTypes || []);
+      setPage(page + 1);
+      setCheckedIcon(obj.icon);
+      setFormInput({ name: obj.name });
     }
-    // if (user) {
-    //   setFormInput({ ...formInput, user_id: appUser.id });
-    // }
     getTheIcons();
-  }, [obj, user]);
+  }, [obj]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -78,17 +82,21 @@ export default function CreateBoard({ obj }) {
   const handleSubmitTwo = (e) => {
     e.preventDefault();
     if (obj.id) {
-      updateBoard(formInput);
+      updateBoard({ ...formInput, user_id: obj.user_id, id: obj.id });
       router.push('/');
     } else {
-      setFormInput({ ...formInput, user_id: appUser.id });
-      createBoard(formInput).then((boardObj) => {
+      createBoard({ ...formInput, user_id: appUser.id }).then((boardObj) => {
         const payload = { type: checkedBoardType.type, board_id: boardObj.id };
         const boardPromise = createBoardType(payload);
         Promise.all([boardPromise]).then(() => router.push('/'));
       });
     }
   };
+
+  if (loading) {
+    setup();
+    return <div>loading</div>;
+  }
 
   if (page === 1) {
     return (
@@ -119,10 +127,10 @@ export default function CreateBoard({ obj }) {
   if (page === 2) {
     return (
       <>
-        <div>Create Board</div>
+        <div className="addEditHeaderText">{obj.id ? 'update' : 'create'} board</div>
         <Form>
           <Form.Group className="mb-3" controlId="boardName">
-            <Form.Control name="name" type="text" placeholder="board name" value={formInput.name} onChange={handleChange} />
+            <Form.Control name="name" type="text" placeholder="board name" value={formInput.name} onChange={handleChange} required />
           </Form.Group>
 
           <div className="iconsSelect">
@@ -132,10 +140,11 @@ export default function CreateBoard({ obj }) {
                   type="radio"
                   id={`${icon.id}_iconRadio`}
                   label={icon.name}
-                  defaultChecked={checkedIcon.id === icon.toString()}
+                  defaultChecked={checkedIcon.name === icon.toString()}
                   value={icon.id}
+                  required
                   onChange={handleClickIcon}
-                  name="IconRadio"
+                  name="icon"
                 />
               </div>
             ))}
@@ -153,7 +162,10 @@ export default function CreateBoard({ obj }) {
 CreateBoard.propTypes = {
   obj: PropTypes.shape({
     id: PropTypes.number,
+    icon: PropTypes.string,
     boardTypes: PropTypes.string,
+    name: PropTypes.string,
+    user_id: PropTypes.number,
   }),
 };
 
