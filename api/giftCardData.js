@@ -56,6 +56,19 @@ const getGiftCardById = (id) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
+const getGiftCardsByBoardId = (boardId) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/gift_cards?board=${boardId}`)
+    .then((response) => response.json())
+    .then((response) => {
+      if (response) {
+        resolve(response);
+      } else {
+        resolve([]);
+      }
+    })
+    .catch((error) => reject(error));
+});
+
 const deleteSingleGiftCard = (id) => new Promise((resolve, reject) => {
   fetch(`${dbUrl}/gift_cards/${id}`, {
     method: 'DELETE',
@@ -93,4 +106,5 @@ export {
   deleteSingleGiftCard,
   updateGiftCard,
   getGiftCardById,
+  getGiftCardsByBoardId,
 };
