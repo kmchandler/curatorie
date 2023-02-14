@@ -82,7 +82,7 @@ export default function CreateBoard({ obj }) {
   const handleSubmitTwo = (e) => {
     e.preventDefault();
     if (obj.id) {
-      updateBoard({ ...formInput, user_id: appUser.id });
+      updateBoard({ ...formInput, user_id: obj.user_id, id: obj.id });
       router.push('/');
     } else {
       createBoard({ ...formInput, user_id: appUser.id }).then((boardObj) => {
@@ -165,6 +165,7 @@ CreateBoard.propTypes = {
     icon: PropTypes.string,
     boardTypes: PropTypes.string,
     name: PropTypes.string,
+    user_id: PropTypes.number,
   }),
 };
 

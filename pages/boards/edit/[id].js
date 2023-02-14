@@ -14,8 +14,6 @@ export default function EditFlick() {
     getBoardById(id).then(setEditItem);
   }, [id]);
 
-  console.warn(editItem, 'editItem');
-
   if (!editItem.id) return null;
 
   return (<CreateBoard obj={editItem} user={user} />);
