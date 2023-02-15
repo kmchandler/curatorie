@@ -57,7 +57,7 @@ const getGiftCardById = (id) => new Promise((resolve, reject) => {
 });
 
 const getGiftCardsByBoardId = (boardId) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/gift_cards?board=${boardId}`)
+  fetch(`${dbUrl}/gift_cards?board_id=${boardId}`)
     .then((response) => response.json())
     .then((response) => {
       if (response) {

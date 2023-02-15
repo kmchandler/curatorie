@@ -45,7 +45,7 @@ const getInspoCardById = (id) => new Promise((resolve, reject) => {
 });
 
 const getInspoCardsByBoardId = (boardId) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/inspo_cards?board=${boardId}`)
+  fetch(`${dbUrl}/inspo_cards?board_id=${boardId}`)
     .then((response) => response.json())
     .then((response) => {
       if (response) {

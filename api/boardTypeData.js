@@ -32,7 +32,7 @@ const getBoardTypeById = (id) => new Promise((resolve, reject) => {
 });
 
 const getBoardTypeByBoardId = (boardId) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/board_types?board=${boardId}`)
+  fetch(`${dbUrl}/board_types?board_id=${boardId}`)
     .then((response) => response.json())
     .then((response) => {
       if (response) {

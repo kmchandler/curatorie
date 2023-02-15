@@ -51,7 +51,7 @@ const getPurchaseCardById = (id) => new Promise((resolve, reject) => {
 });
 
 const getPurchaseCardsByBoardId = (boardId) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/purchase_cards?board=${boardId}`)
+  fetch(`${dbUrl}/purchase_cards?board_id=${boardId}`)
     .then((response) => response.json())
     .then((response) => {
       if (response) {

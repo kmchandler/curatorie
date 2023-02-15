@@ -15,8 +15,8 @@ import { getBoardTypeByBoardId } from '../../api/boardTypeData';
 export default function IndividualBoard() {
   const router = useRouter();
   const { id } = router.query;
-  const [boardItem, setBoardItem] = useState([]);
-  const [boardTypeObj, setBoardTypeObj] = useState([]);
+  const [boardItem, setBoardItem] = useState({});
+  const [boardTypeObj, setBoardTypeObj] = useState({});
   const [giftCards, setGiftCards] = useState([]);
   const [inspoCards, setInspoCards] = useState([]);
   const [listCards, setListCards] = useState([]);
@@ -27,22 +27,22 @@ export default function IndividualBoard() {
   };
 
   const getType = async () => {
-    const theBoardType = await getBoardTypeByBoardId(boardItem.id);
-    setBoardTypeObj(theBoardType);
+    const theBoardType = await getBoardTypeByBoardId(id);
+    setBoardTypeObj(theBoardType[0]);
   };
 
   const getCards = async () => {
     if (boardTypeObj.type === 'gift card') {
-      const theGiftCards = await getGiftCardsByBoardId(boardItem.id);
+      const theGiftCards = await getGiftCardsByBoardId(id);
       setGiftCards(theGiftCards);
     } if (boardTypeObj.type === 'inspo card') {
-      const theInspoCards = await getInspoCardsByBoardId(boardItem.id);
+      const theInspoCards = await getInspoCardsByBoardId(id);
       setInspoCards(theInspoCards);
     } if (boardTypeObj.type === 'list card') {
-      const theListCards = await getListCardsByBoardId(boardItem.id);
+      const theListCards = await getListCardsByBoardId(id);
       setListCards(theListCards);
     } if (boardTypeObj.type === 'purchase card') {
-      const thePurchaseCards = await getPurchaseCardsByBoardId(boardItem.id);
+      const thePurchaseCards = await getPurchaseCardsByBoardId(id);
       setPurchaseCards(thePurchaseCards);
     }
   };
@@ -50,24 +50,50 @@ export default function IndividualBoard() {
   const getInfo = () => {
     getBoardItem();
     getType();
-    getCards();
   };
 
   useEffect(() => {
     getInfo();
   }, [id]);
 
-  const addCard = () => {
-    router.push('/boards/cards/new');
+  useEffect(() => {
+    if (boardTypeObj.id) {
+      getCards();
+    }
+  }, [boardTypeObj]);
+
+  const addGiftCard = () => {
+    router.push({
+      pathname: '/boards/cards/new/giftCard',
+      query: { boardItemId: boardItem.id },
+    });
   };
 
-  console.warn(boardItem, 'boardItem');
-  console.warn(boardTypeObj, 'boardTypeObj');
+  const addInspoCard = () => {
+    router.push({
+      pathname: '/boards/cards/new/inspoCard',
+      query: { boardItemId: boardItem.id },
+    });
+  };
+
+  const addListCard = () => {
+    router.push({
+      pathname: '/boards/cards/new/listCard',
+      query: { boardItemId: boardItem.id },
+    });
+  };
+
+  const addPurchaseCard = () => {
+    router.push({
+      pathname: '/boards/cards/new/purchaseCard',
+      query: { boardItemId: boardItem.id },
+    });
+  };
 
   if (boardTypeObj.type === 'gift card') {
     return (
       <div>
-        <Button variant="primary" type="button" onClick={addCard}>
+        <Button variant="primary" type="button" onClick={addGiftCard}>
           Add Card
         </Button>
         <div className="d-flex flex-wrap cardContainer giftCardDiv">
@@ -78,7 +104,7 @@ export default function IndividualBoard() {
   } if (boardTypeObj.type === 'inspo card') {
     return (
       <div>
-        <Button variant="primary" type="button" onClick={addCard}>
+        <Button variant="primary" type="button" onClick={addInspoCard}>
           Add Card
         </Button>
         <div className="d-flex flex-wrap cardContainer inspoCardDiv">
@@ -89,7 +115,7 @@ export default function IndividualBoard() {
   } if (boardTypeObj.type === 'list card') {
     return (
       <div>
-        <Button variant="primary" type="button" onClick={addCard}>
+        <Button variant="primary" type="button" onClick={addListCard}>
           Add Card
         </Button>
         <div className="d-flex flex-wrap cardContainer listCardDiv">
@@ -100,7 +126,7 @@ export default function IndividualBoard() {
   } if (boardTypeObj.type === 'purchase card') {
     return (
       <div>
-        <Button variant="primary" type="button" onClick={addCard}>
+        <Button variant="primary" type="button" onClick={addPurchaseCard}>
           Add Card
         </Button>
         <div className="d-flex flex-wrap cardContainer purchaseCardDiv">
@@ -110,10 +136,6 @@ export default function IndividualBoard() {
     );
   }
   return (
-    <div>
-      <Button variant="primary" type="button" onClick={addCard}>
-        Add Card
-      </Button>
-    </div>
+    null
   );
 }

@@ -43,7 +43,7 @@ const getListCardById = (id) => new Promise((resolve, reject) => {
 });
 
 const getListCardsByBoardId = (boardId) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/list_cards?board=${boardId}`)
+  fetch(`${dbUrl}/list_cards?board_id=${boardId}`)
     .then((response) => response.json())
     .then((response) => {
       if (response) {
