@@ -31,6 +31,19 @@ const getBoardTypeById = (id) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
+const getBoardTypeByBoardId = (boardId) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/board_types?board_id=${boardId}`)
+    .then((response) => response.json())
+    .then((response) => {
+      if (response) {
+        resolve(response);
+      } else {
+        resolve([]);
+      }
+    })
+    .catch((error) => reject(error));
+});
+
 const getBoardTypes = () => new Promise((resolve, reject) => {
   fetch(`${dbUrl}/board_types`)
     .then((response) => response.json())
@@ -52,4 +65,5 @@ export {
   deleteSingleBoardType,
   getBoardTypeById,
   getBoardTypes,
+  getBoardTypeByBoardId,
 };
