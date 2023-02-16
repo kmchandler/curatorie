@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 import { createListCard, updateListCard } from '../api/listCardData';
 
@@ -14,12 +14,19 @@ function ListCardForm({ obj, user, boardItemId }) {
   const [formInput, setFormInput] = useState({});
   const router = useRouter();
 
+  useEffect(() => {
+    if (obj.id) {
+      setFormInput(obj);
+    }
+  }, [obj, user]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (obj.id) {
-      const payload = { ...formInput, user_id: user.id, board_id: boardItemId };
+      const payload = { ...formInput, user_id: obj.user_id, board_id: obj.board_id };
+      console.warn(payload);
       updateListCard(payload);
-      router.push(`/boards/${boardItemId}`);
+      router.push(`/boards/${obj.board_id}`);
     } else {
       const payload = { ...formInput, user_id: user.id, board_id: boardItemId };
       createListCard(payload);
@@ -38,7 +45,7 @@ function ListCardForm({ obj, user, boardItemId }) {
   return (
     <div className="listCard listCardForm">
       <Form className="listCardForm" onSubmit={handleSubmit}>
-        <h2 className="updateCardHeader">new card</h2>
+        <h2 className="updateCardHeader">{obj.id ? 'update' : 'add'} card</h2>
         <input type="text" name="list_item" value={formInput.list_item} className="form-control" placeholder="list item" onChange={handleChange} />
         <br />
         <Form.Check

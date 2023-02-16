@@ -1,8 +1,24 @@
 import PropTypes from 'prop-types';
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import { useRouter } from 'next/router';
+import { deleteSingleGiftCard } from '../api/giftCardData';
 
-function GiftCard({ giftCardObj }) {
+function GiftCard({ giftCardObj, boardItemId, onUpdate }) {
+  const router = useRouter();
+
+  const deleteThisCard = () => {
+    if (window.confirm('Delete card?')) {
+      deleteSingleGiftCard(giftCardObj.id).then(() => onUpdate());
+    }
+  };
+
+  const editGiftCard = () => {
+    router.push({
+      pathname: `/boards/cards/edit/gift/${giftCardObj.id}`,
+      query: { boardItemId },
+    });
+  };
+
   return (
     <Card style={{ width: '18rem' }}>
       <Card.Img variant="top" src={giftCardObj.image_url} />
@@ -14,7 +30,12 @@ function GiftCard({ giftCardObj }) {
         <div>{giftCardObj.gift_for}</div>
         <div>{giftCardObj.name}</div>
         <div>{giftCardObj.priority ? '⭐' : null}</div>
-        <Button variant="primary">Go somewhere</Button>
+        <div className="giftCardBtns">
+          <button type="button" className="editButton" onClick={editGiftCard}>edit</button>
+          <button type="button" className="deleteButton m-2" onClick={deleteThisCard}>
+            delete
+          </button>
+        </div>
       </Card.Body>
     </Card>
   );
@@ -22,6 +43,7 @@ function GiftCard({ giftCardObj }) {
 
 GiftCard.propTypes = {
   giftCardObj: PropTypes.shape({
+    id: PropTypes.string,
     link: PropTypes.string,
     image_url: PropTypes.string,
     item: PropTypes.string,
@@ -31,6 +53,10 @@ GiftCard.propTypes = {
     gift_for: PropTypes.string,
     name: PropTypes.string,
     priority: PropTypes.bool,
+  }).isRequired,
+  onUpdate: PropTypes.func.isRequired,
+  boardItemId: PropTypes.shape({
+    id: PropTypes.string,
   }).isRequired,
 };
 

@@ -41,7 +41,7 @@ function PurchaseCardForm({ obj, user, boardItemId }) {
   return (
     <div className="purchaseCard purchaseCardForm">
       <Form className="purchaseCardForm" onSubmit={handleSubmit}>
-        <h2 className="updateCardHeader">new card</h2>
+        <h2 className="updateCardHeader">{obj.id ? 'update' : 'add'} card</h2>
         <input required type="url" name="link" value={formInput.link} className="form-control" placeholder="link to item" onChange={handleChange} />
         <br />
         <input required type="url" name="image_url" value={formInput.image_url} className="form-control" placeholder="image_url for item" onChange={handleChange} />

@@ -97,7 +97,7 @@ export default function IndividualBoard() {
           Add Card
         </Button>
         <div className="d-flex flex-wrap cardContainer giftCardDiv">
-          {giftCards.map((giftCard) => <GiftCard key={giftCard.id} giftCardObj={giftCard} onUpdate={getInfo} />)}
+          {giftCards.map((giftCard) => <GiftCard key={giftCard.id} boardItemId={boardItem.id} giftCardObj={giftCard} onUpdate={getInfo} />)}
         </div>
       </div>
     );
@@ -108,7 +108,7 @@ export default function IndividualBoard() {
           Add Card
         </Button>
         <div className="d-flex flex-wrap cardContainer inspoCardDiv">
-          {inspoCards.map((inspoCard) => <InspoCard key={inspoCard.id} inspoCardObj={inspoCard} onUpdate={getInfo} />)}
+          {inspoCards.map((inspoCard) => <InspoCard key={inspoCard.id} boardItemId={boardItem.id} inspoCardObj={inspoCard} onUpdate={getInfo} />)}
         </div>
       </div>
     );
@@ -119,7 +119,7 @@ export default function IndividualBoard() {
           Add Card
         </Button>
         <div className="d-flex flex-wrap cardContainer listCardDiv">
-          {listCards.map((listCard) => <ListCard key={listCard.id} listCardObj={listCard} onUpdate={getInfo} />)}
+          {listCards.map((listCard) => <ListCard key={listCard.id} boardItemId={boardItem.id} listCardObj={listCard} onUpdate={getInfo} />)}
         </div>
       </div>
     );
@@ -130,7 +130,7 @@ export default function IndividualBoard() {
           Add Card
         </Button>
         <div className="d-flex flex-wrap cardContainer purchaseCardDiv">
-          {purchaseCards.map((purchaseCard) => <PurchaseCard key={purchaseCard.id} purchaseCardObj={purchaseCard} onUpdate={getInfo} />)}
+          {purchaseCards.map((purchaseCard) => <PurchaseCard key={purchaseCard.id} boardItemId={boardItem.id} purchaseCardObj={purchaseCard} onUpdate={getInfo} />)}
         </div>
       </div>
     );
