@@ -4,7 +4,7 @@ import { useAuth } from '../../../utils/context/authContext';
 import { getBoardById } from '../../../api/boardData';
 import CreateBoard from '../../../components/CreateBoards';
 
-export default function EditFlick() {
+export default function EditBoard() {
   const [editItem, setEditItem] = useState({});
   const router = useRouter();
   const { id } = router.query;

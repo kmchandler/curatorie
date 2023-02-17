@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 import { createPurchaseCard, updatePurchaseCard } from '../api/purchaseCardData';
 
@@ -17,12 +17,18 @@ function PurchaseCardForm({ obj, user, boardItemId }) {
   const [formInput, setFormInput] = useState({});
   const router = useRouter();
 
+  useEffect(() => {
+    if (obj.id) {
+      setFormInput(obj);
+    }
+  }, [obj, user]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (obj.id) {
-      const payload = { ...formInput, user_id: user.id, board_id: boardItemId };
+      const payload = { ...formInput, user_id: obj.user_id, board_id: obj.board_id };
       updatePurchaseCard(payload);
-      router.push(`/boards/${boardItemId}`);
+      router.push(`/boards/${obj.board_id}`);
     } else {
       const payload = { ...formInput, user_id: user.id, board_id: boardItemId };
       createPurchaseCard(payload);
@@ -41,7 +47,7 @@ function PurchaseCardForm({ obj, user, boardItemId }) {
   return (
     <div className="purchaseCard purchaseCardForm">
       <Form className="purchaseCardForm" onSubmit={handleSubmit}>
-        <h2 className="updateCardHeader">new card</h2>
+        <h2 className="updateCardHeader">{obj.id ? 'update' : 'add'} card</h2>
         <input required type="url" name="link" value={formInput.link} className="form-control" placeholder="link to item" onChange={handleChange} />
         <br />
         <input required type="url" name="image_url" value={formInput.image_url} className="form-control" placeholder="image_url for item" onChange={handleChange} />
