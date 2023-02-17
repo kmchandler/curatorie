@@ -24,7 +24,6 @@ function ListCardForm({ obj, user, boardItemId }) {
     e.preventDefault();
     if (obj.id) {
       const payload = { ...formInput, user_id: obj.user_id, board_id: obj.board_id };
-      console.warn(payload);
       updateListCard(payload);
       router.push(`/boards/${obj.board_id}`);
     } else {

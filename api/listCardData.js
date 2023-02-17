@@ -71,7 +71,7 @@ const updateListCard = (listCard) => new Promise((resolve, reject) => {
     list_item: listCard.list_item,
     priority: listCard.priority,
   };
-  fetch(`${dbUrl}/lsit_cards/${listCard.id}`, {
+  fetch(`${dbUrl}/list_cards/${listCard.id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(listCardObj),

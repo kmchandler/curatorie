@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 import { createPurchaseCard, updatePurchaseCard } from '../api/purchaseCardData';
 
@@ -17,12 +17,18 @@ function PurchaseCardForm({ obj, user, boardItemId }) {
   const [formInput, setFormInput] = useState({});
   const router = useRouter();
 
+  useEffect(() => {
+    if (obj.id) {
+      setFormInput(obj);
+    }
+  }, [obj, user]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (obj.id) {
-      const payload = { ...formInput, user_id: user.id, board_id: boardItemId };
+      const payload = { ...formInput, user_id: obj.user_id, board_id: obj.board_id };
       updatePurchaseCard(payload);
-      router.push(`/boards/${boardItemId}`);
+      router.push(`/boards/${obj.board_id}`);
     } else {
       const payload = { ...formInput, user_id: user.id, board_id: boardItemId };
       createPurchaseCard(payload);
