@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { getAllUsers } from '../../../../api/userData';
 import UserCard from '../../../../components/UserCard';
 import SendBoardSearch from '../../../../components/SendBoardSearch';
 
-function SharedBoards({ boardObj }) {
+function SharedBoards() {
   const [users, setUsers] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
+  const router = useRouter();
+  const { boardId } = router.query;
 
   const getAllTheUsers = async () => {
     const theUsers = await getAllUsers();
@@ -24,14 +27,14 @@ function SharedBoards({ boardObj }) {
         <SendBoardSearch users={users} setFilteredUsers={setFilteredUsers} />
       </div>
       <div className="d-flex flex-wrap cardContainer usersCardDiv">
-        {filteredUsers.map((user) => <UserCard key={user.id} userObj={user} boardObj={boardObj} onUpdate={getAllTheUsers} />)}
+        {filteredUsers.map((user) => <UserCard key={user.id} userObj={user} boardId={boardId} onUpdate={getAllTheUsers} />)}
       </div>
     </div>
   );
 }
 
 SharedBoards.propTypes = {
-  boardObj: PropTypes.shape({
+  boardId: PropTypes.shape({
     id: PropTypes.number,
   }).isRequired,
 };

@@ -5,9 +5,10 @@ import Card from 'react-bootstrap/Card';
 import PropTypes from 'prop-types';
 import { createShareRequest } from '../api/shareRequestData';
 
-export default function UserCard({ userObj, boardObj }) {
+export default function UserCard({ userObj, boardId }) {
   const sendBoard = () => {
-    const payload = { user_id: userObj.id, board_id: boardObj };
+    debugger;
+    const payload = { user_id: userObj.id, board_id: boardId };
     createShareRequest(payload);
   };
 
@@ -37,7 +38,7 @@ UserCard.propTypes = {
     email: PropTypes.string,
     id: PropTypes.number,
   }),
-  boardObj: PropTypes.shape({
+  boardId: PropTypes.shape({
     id: PropTypes.number,
   }).isRequired,
 };

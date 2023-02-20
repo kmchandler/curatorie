@@ -19,7 +19,7 @@ function BoardCard({
   const shareBoard = () => {
     router.push({
       pathname: '/boards/shared/requests/send',
-      query: { boardObj: boardObj.id },
+      query: { boardId: boardObj.id },
     });
   };
 
