@@ -42,7 +42,14 @@ export default function NavBar({ navObj }) {
             <li className="nav-item">
               <Link passHref href="/">
                 <a className="nav-link">
-                  boards
+                  my boards
+                </a>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link passHref href="/boards/shared/all">
+                <a className="nav-link">
+                  shared boards
                 </a>
               </Link>
             </li>

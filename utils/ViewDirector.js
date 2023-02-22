@@ -4,8 +4,9 @@ import Router from 'next/router';
 import { useAuth } from './context/authContext';
 import Loading from '../components/Loading';
 import NavBar from '../components/NavBar';
-import { getUserByUid } from '../api/userData';
+import Signin from '../components/Signin';
 import RegisterForm from '../components/RegisterForm';
+import { getUserByUid } from '../api/userData';
 
 const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) => {
   const { user, userLoading } = useAuth();
@@ -36,7 +37,19 @@ const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) 
     );
   }
 
-  return <RegisterForm user={user} />;
+  if (user && !profile) {
+    return (
+      <>
+        <RegisterForm user={user} />
+      </>
+    );
+  }
+
+  return (
+    <>
+      <Signin />
+    </>
+  );
 };
 
 export default ViewDirectorBasedOnUserAuthStatus;

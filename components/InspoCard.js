@@ -24,7 +24,7 @@ function InspoCard({ inspoCardObj, boardItemId, onUpdate }) {
       <Card.Img variant="top" src={inspoCardObj.image_url} />
       <Card.Body>
         <div>{inspoCardObj.description}</div>
-        <div>{inspoCardObj.priority ? inspoCardObj.priority : null}</div>
+        <div>{inspoCardObj.priority ? '⭐' : null}</div>
         <div className="inspoCardBtns">
           <button type="button" className="editButton" onClick={editInspoCard}>edit</button>
           <button type="button" className="deleteButton m-2" onClick={deleteThisCard}>

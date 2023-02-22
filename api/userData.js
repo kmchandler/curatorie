@@ -15,6 +15,13 @@ const getUserByUid = (uid) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
+const getAllUsers = () => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/users`)
+    .then((response) => response.json())
+    .then(resolve)
+    .catch(reject);
+});
+
 const createUser = (user) => new Promise((resolve, reject) => {
   const userObj = {
     uid: user.uid,
@@ -85,4 +92,5 @@ export {
   deleteSingleUser,
   updateUser,
   getUserByUserId,
+  getAllUsers,
 };

@@ -23,15 +23,15 @@ function RegisterForm({ user, obj }) {
     }
   }, [obj, user]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (obj.id) {
       updateUser(formInput);
       router.push(`/users/${obj.id}`);
     } else {
       const payload = { ...formInput, uid: user.uid };
-      const createdUser = createUser(payload);
-      router.push(`/users/${createdUser.id}`);
+      createUser(payload);
+      router.push('/');
     }
   };
 

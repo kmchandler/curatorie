@@ -1,21 +1,27 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { deleteSingleBoard } from '../api/boardData';
 
 function BoardCard({
   boardObj, onUpdate,
 }) {
+  const router = useRouter();
+
   const deleteThisBoard = () => {
     if (window.confirm(`Delete ${boardObj.name}?`)) {
       deleteSingleBoard(boardObj.id).then(() => onUpdate());
     }
   };
 
-  useEffect(() => {
-
-  }, []);
+  const shareBoard = () => {
+    router.push({
+      pathname: '/boards/shared/requests/send',
+      query: { boardId: boardObj.id },
+    });
+  };
 
   return (
     <>
@@ -33,6 +39,9 @@ function BoardCard({
             </Link>
             <button type="button" className="deleteButton m-2" onClick={deleteThisBoard}>
               delete
+            </button>
+            <button type="button" className="shareButton m-2" onClick={shareBoard}>
+              share
             </button>
           </div>
         </Card.Body>
