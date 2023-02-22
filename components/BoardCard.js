@@ -4,6 +4,7 @@ import Card from 'react-bootstrap/Card';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { deleteSingleBoard } from '../api/boardData';
+import IconRender from './IconRender';
 
 function BoardCard({
   boardObj, onUpdate,
@@ -29,7 +30,7 @@ function BoardCard({
         <Card.Body className="cardBody boardCardBody">
           <Link href={`/boards/${boardObj.id}`} passHref>
             <div className="cardDetails">
-              <p className="boardIcon">{boardObj.icon}</p>
+              <div className="boardIcon"><IconRender iconName={boardObj.icon} /></div>
               <p className="boardCardType">{boardObj.name.toLowerCase()}</p>
             </div>
           </Link>

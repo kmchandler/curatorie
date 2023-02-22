@@ -9,6 +9,7 @@ import getTypes from '../api/typeData';
 import getIcons from '../api/iconData';
 import { createBoard, updateBoard } from '../api/boardData';
 import { getUserByUid } from '../api/userData';
+import IconRender from './IconRender';
 
 const initialState = {
   boardTypes: '',
@@ -140,7 +141,7 @@ export default function CreateBoard({ obj }) {
                 <Form.Check
                   type="radio"
                   id={`${icon.id}_iconRadio`}
-                  label={icon.name}
+                  label={<IconRender iconName={icon.name} />}
                   defaultChecked={checkedIcon.name === icon.toString()}
                   value={icon.id}
                   required
