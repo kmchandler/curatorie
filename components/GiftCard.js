@@ -27,7 +27,7 @@ function GiftCard({ giftCardObj, boardItemId, onUpdate }) {
         <div>{giftCardObj.description}</div>
         <div>${giftCardObj.price}</div>
         <div>{giftCardObj.occasion}</div>
-        <div>{giftCardObj.gift_for}</div>
+        <div>{giftCardObj.gift_for === 'someone_else' ? 'someone else' : 'myself'}</div>
         <div>{giftCardObj.name}</div>
         <div>{giftCardObj.priority ? '⭐' : null}</div>
         <div className="giftCardBtns">

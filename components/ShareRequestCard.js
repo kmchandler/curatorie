@@ -36,7 +36,7 @@ function ShareRequestCard({
 
   const rejectRequest = async () => {
     if (window.confirm('decline invitation?')) {
-      deleteSingleShareRequest(boardObj.id);
+      await deleteSingleShareRequest(boardObj.id);
       onUpdate();
     }
   };

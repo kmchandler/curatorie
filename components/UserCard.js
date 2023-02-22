@@ -12,7 +12,7 @@ export default function UserCard({ userObj, boardId }) {
   const sendBoard = () => {
     const payload = { user_id: userObj.id, board_id: boardId };
     createShareRequest(payload);
-    router.push('/boards');
+    router.push('/boards/all');
   };
 
   return (

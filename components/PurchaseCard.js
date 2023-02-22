@@ -25,7 +25,7 @@ function PurchaseCard({ purchaseCardObj, boardItemId, onUpdate }) {
         <div>{purchaseCardObj.item}</div>
         <div>{purchaseCardObj.description}</div>
         <div>${purchaseCardObj.price}</div>
-        <div>{purchaseCardObj.priority ? purchaseCardObj.priority : null}</div>
+        <div>{purchaseCardObj.priority ? '⭐' : null}</div>
         <div className="listCardBtns">
           <button type="button" className="editButton" onClick={editPurchaseCard}>edit</button>
           <button type="button" className="deleteButton m-2" onClick={deleteThisCard}>

@@ -14,8 +14,6 @@ function ShareRequests() {
     setAppUser(theUser);
   };
 
-  console.warn(appUser);
-
   const getRequests = async () => {
     const theRequests = await getShareRequestsByUserId(appUser.id);
     setShareRequests(theRequests);
