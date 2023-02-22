@@ -9,9 +9,9 @@ import { createShareRequest } from '../api/shareRequestData';
 export default function UserCard({ userObj, boardId }) {
   const router = useRouter();
 
-  const sendBoard = () => {
+  const sendBoard = async () => {
     const payload = { user_id: userObj.id, board_id: boardId };
-    createShareRequest(payload);
+    await createShareRequest(payload);
     router.push('/boards/all');
   };
 

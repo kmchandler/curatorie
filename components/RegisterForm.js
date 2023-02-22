@@ -30,7 +30,7 @@ function RegisterForm({ user, obj }) {
       router.push(`/users/${obj.id}`);
     } else {
       const payload = { ...formInput, uid: user.uid };
-      createUser(payload);
+      await createUser(payload);
       router.push('/');
     }
   };
