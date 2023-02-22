@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import Form from 'react-bootstrap/Form';
 import { useAuth } from '../utils/context/authContext';
-import { createBoardType, getBoardTypes } from '../api/boardTypeData';
+import { createBoardType } from '../api/boardTypeData';
+import getTypes from '../api/typeData';
 import getIcons from '../api/iconData';
 import { createBoard, updateBoard } from '../api/boardData';
 import { getUserByUid } from '../api/userData';
@@ -26,7 +27,7 @@ export default function CreateBoard({ obj }) {
   const router = useRouter();
 
   const getTheBoardTypes = async () => {
-    const types = await getBoardTypes();
+    const types = await getTypes();
     setBoardTypes(types);
   };
 
