@@ -3,13 +3,16 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 import PropTypes from 'prop-types';
+import { useRouter } from 'next/router';
 import { createShareRequest } from '../api/shareRequestData';
 
 export default function UserCard({ userObj, boardId }) {
+  const router = useRouter();
+
   const sendBoard = () => {
-    debugger;
     const payload = { user_id: userObj.id, board_id: boardId };
     createShareRequest(payload);
+    router.push('/boards');
   };
 
   return (

@@ -32,7 +32,7 @@ const getShareRequestById = (id) => new Promise((resolve, reject) => {
 });
 
 const getShareRequestsByUserId = (userId) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/share_requests?user=${userId}`)
+  fetch(`${dbUrl}/share_requests?user_id=${userId}`)
     .then((response) => response.json())
     .then((response) => {
       if (response) {

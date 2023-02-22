@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { useAuth } from '../../../utils/context/authContext';
 import { getSharedBoardsByUserId } from '../../../api/sharedBoardData';
 import { getUserByUid } from '../../../api/userData';
@@ -14,27 +15,28 @@ function SharedBoards() {
     setAppUser(theUser);
   };
 
-  console.warn(appUser);
-
   const getBoards = async () => {
     const theBoards = await getSharedBoardsByUserId(appUser.id);
     setSharedBoards(theBoards);
   };
-
-  console.warn(sharedBoards);
 
   useEffect(() => {
     getUser();
   }, [user]);
 
   useEffect(() => {
-    getBoards();
+    if (appUser.id) {
+      getBoards();
+    }
   }, [appUser]);
 
   return (
     <div>
       <h1>shared boards</h1>
       <div className="d-flex flex-wrap cardContainer boardCardDiv">
+        <Link href="/boards/shared/requests/all" passHref>
+          <button type="button" className="requestsButton">requests</button>
+        </Link>
         {sharedBoards.map((sb) => <SharedBoardCard key={sb.id} boardObj={sb} onUpdate={getBoards} />)}
       </div>
     </div>

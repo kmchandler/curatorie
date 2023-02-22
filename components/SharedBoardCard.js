@@ -11,8 +11,8 @@ function SharedBoardCard({
   const [sharedBoard, setSharedBoard] = useState([]);
 
   const deleteThisBoard = () => {
-    if (window.confirm(`Delete ${sharedBoard.name}?`)) {
-      deleteSingleSharedBoard(sharedBoard.id).then(() => onUpdate());
+    if (window.confirm(`leave ${sharedBoard.name}?`)) {
+      deleteSingleSharedBoard(boardObj.id).then(() => onUpdate());
     }
   };
 
@@ -52,6 +52,7 @@ function SharedBoardCard({
 SharedBoardCard.propTypes = {
   boardObj: PropTypes.shape({
     board: PropTypes.number,
+    id: PropTypes.number,
   }).isRequired,
   sharedBoard: PropTypes.shape({
     id: PropTypes.number,
