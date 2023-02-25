@@ -10,7 +10,7 @@ export default function SendBoardSearch({ setFilteredUsers, users }) {
   const handleChange = (e) => {
     const { value } = e.target;
     setInput(value);
-    const results = userObj.filter((user) => user?.email?.toLowerCase().includes(value.toLowerCase()) || user?.username?.toString().toLowerCase().includes(value.toLowerCase()));
+    const results = userObj.filter((user) => user?.email?.toLowerCase().includes(value.toLowerCase()) || user?.username?.toString().toLowerCase().includes(value.toLowerCase()) || user?.first_name?.toLowerCase().includes(value.toLowerCase()) || user?.last_name?.toLowerCase().includes(value.toLowerCase()));
     setFilteredUsers(results);
   };
   return (
@@ -20,7 +20,7 @@ export default function SendBoardSearch({ setFilteredUsers, users }) {
         placeholder="search"
         className="me-2"
         value={input}
-        name="playerSearch"
+        name="userSearch"
         onChange={handleChange}
       />
     </Form>

@@ -26,7 +26,7 @@ function BoardCard({
 
   return (
     <>
-      <Card className="boardCardDiv" style={{ width: '15rem', margin: '10px', height: '12rem' }}>
+      <Card className="boardCardDiv" style={{ width: '25%', margin: '10px', height: '10%' }}>
         <Card.Body className="cardBody boardCardBody">
           <Link href={`/boards/${boardObj.id}`} passHref>
             <div className="cardDetails">
@@ -38,12 +38,8 @@ function BoardCard({
             <Link href={`/boards/edit/${boardObj.id}`} passHref>
               <button type="button" className="editButton">edit</button>
             </Link>
-            <button type="button" className="deleteButton m-2" onClick={deleteThisBoard}>
-              delete
-            </button>
-            <button type="button" className="shareButton m-2" onClick={shareBoard}>
-              share
-            </button>
+            <button type="button" className="deleteButton m-2" onClick={deleteThisBoard}>delete</button>
+            <button type="button" className="shareButton m-2" onClick={shareBoard}>share</button>
           </div>
         </Card.Body>
       </Card>

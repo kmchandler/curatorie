@@ -4,6 +4,7 @@ import Card from 'react-bootstrap/Card';
 import Link from 'next/link';
 import { deleteSingleSharedBoard } from '../api/sharedBoardData';
 import { getBoardById } from '../api/boardData';
+import IconRender from './IconRender';
 
 function SharedBoardCard({
   boardObj, onUpdate,
@@ -27,11 +28,11 @@ function SharedBoardCard({
 
   return (
     <>
-      <Card className="sharedBoardCardDiv" style={{ width: '15rem', margin: '10px', height: '12rem' }}>
+      <Card className="boardCardDiv sharedBoardCardDiv" style={{ width: '25%', margin: '10px', height: '10%' }}>
         <Card.Body className="cardBody sharedBoardCardBody">
           <Link href={`/boards/${sharedBoard.id}`} passHref>
             <div className="cardDetails">
-              <p className="boardIcon">{sharedBoard.icon}</p>
+              <p className="boardIcon"><IconRender iconName={sharedBoard.icon} /></p>
               <p className="boardCardType">{sharedBoard.name?.toLowerCase()}</p>
             </div>
           </Link>

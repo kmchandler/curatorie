@@ -32,11 +32,13 @@ function SharedBoards() {
 
   return (
     <div>
-      <h1>shared boards</h1>
-      <div className="d-flex flex-wrap cardContainer boardCardDiv">
+      <h3 className="sharedBoardsTitle">shared boards</h3>
+      <div className="shareRequestsBtn">
         <Link href="/boards/shared/requests/all" passHref>
           <button type="button" className="requestsButton">requests</button>
         </Link>
+      </div>
+      <div className="d-flex flex-wrap cardContainer boardCardDiv">
         {sharedBoards.map((sb) => <SharedBoardCard key={sb.id} boardObj={sb} onUpdate={getBoards} />)}
       </div>
     </div>

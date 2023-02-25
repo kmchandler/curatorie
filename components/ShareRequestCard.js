@@ -7,6 +7,7 @@ import { getBoardById } from '../api/boardData';
 import { createSharedBoard } from '../api/sharedBoardData';
 import { getUserByUid, getUserByUserId } from '../api/userData';
 import { deleteSingleShareRequest } from '../api/shareRequestData';
+import IconRender from './IconRender';
 
 function ShareRequestCard({
   boardObj, onUpdate,
@@ -56,16 +57,17 @@ function ShareRequestCard({
       getSender();
     }
   }, [board]);
+  console.warn(board);
 
   return (
     <>
-      <Card className="shareRequestCardDiv" style={{ width: '15rem', margin: '10px', height: '12rem' }}>
+      <Card className="boardCardDiv shareRequestCardDiv" style={{ width: '25%', margin: '10px', height: '10%' }}>
         <Card.Body className="cardBody shareRequestCardBody">
           <Link href={`/boards/${board.id}`} passHref>
             <div className="cardDetails">
-              <p className="boardIcon">{board.icon}</p>
-              <p className="boardCardName">{board.name?.toLowerCase()}</p>
-              <p className="boardCardName">sent by: {sender.first_name?.toLowerCase()} {sender.last_name?.toLowerCase()} ({sender.username?.toLowerCase()})</p>
+              <div className="boardIcon"><IconRender iconName={board.icon} /></div>
+              <div className="boardCardName">{board.name?.toLowerCase()}</div>
+              <div className="boardCardSentBy">sent by: {sender.first_name?.toLowerCase()} {sender.last_name?.toLowerCase()} ({sender.username?.toLowerCase()})</div>
             </div>
           </Link>
           <div className="shareRequestCardBtns">
@@ -86,6 +88,7 @@ ShareRequestCard.propTypes = {
   boardObj: PropTypes.shape({
     board: PropTypes.number,
     id: PropTypes.number,
+    icon: PropTypes.string,
   }).isRequired,
   sharedBoard: PropTypes.shape({
     id: PropTypes.number,

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { Button } from 'react-bootstrap';
+import Image from 'next/image';
+import logo from '../styles/curatorie_logo_name.png';
 import { useAuth } from '../utils/context/authContext';
 import { getBoardsByUserId } from '../api/boardData';
 import { getUserByUid } from '../api/userData';
@@ -26,12 +28,14 @@ function Home() {
   };
 
   return (
-    <div>
-      <h1>Boards</h1>
-      <Button variant="danger" type="button" size="lg" className="copy-btn" onClick={addBoard}>
+    <div className="indexBoardsPage">
+      <div className="logoContainer">
+        <Image src={logo} className="indexLogo" alt="logo" />
+      </div>
+      <Button type="button" className="addBoardBtn" onClick={addBoard}>
         add board
       </Button>
-      <div className="d-flex flex-wrap cardContainer boardCardDiv">
+      <div className="cardContainer">
         {boards.map((board) => <BoardCard key={board.id} boardObj={board} onUpdate={getUserAndBoards} />)}
       </div>
     </div>

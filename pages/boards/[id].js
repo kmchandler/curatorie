@@ -93,7 +93,7 @@ export default function IndividualBoard() {
   if (boardTypeObj.type === 'gift card') {
     return (
       <div>
-        <Button variant="primary" type="button" onClick={addGiftCard}>
+        <Button className="addCardBtn" variant="primary" type="button" onClick={addGiftCard}>
           Add Card
         </Button>
         <div className="d-flex flex-wrap cardContainer giftCardDiv">
@@ -103,8 +103,8 @@ export default function IndividualBoard() {
     );
   } if (boardTypeObj.type === 'inspo card') {
     return (
-      <div>
-        <Button variant="primary" type="button" onClick={addInspoCard}>
+      <div className="cardPageDiv">
+        <Button className="addCardBtn" variant="primary" type="button" onClick={addInspoCard}>
           Add Card
         </Button>
         <div className="d-flex flex-wrap cardContainer inspoCardDiv">
@@ -115,7 +115,7 @@ export default function IndividualBoard() {
   } if (boardTypeObj.type === 'list card') {
     return (
       <div>
-        <Button variant="primary" type="button" onClick={addListCard}>
+        <Button className="addCardBtn" variant="primary" type="button" onClick={addListCard}>
           Add Card
         </Button>
         <div className="d-flex flex-wrap cardContainer listCardDiv">
@@ -126,7 +126,7 @@ export default function IndividualBoard() {
   } if (boardTypeObj.type === 'purchase card') {
     return (
       <div>
-        <Button variant="primary" type="button" onClick={addPurchaseCard}>
+        <Button className="addCardBtn" variant="primary" type="button" onClick={addPurchaseCard}>
           Add Card
         </Button>
         <div className="d-flex flex-wrap cardContainer purchaseCardDiv">
