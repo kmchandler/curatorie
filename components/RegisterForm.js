@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
-import { createUser, getUserByUid, updateUser } from '../api/userData';
+import { createUser, updateUser } from '../api/userData';
 
 const initialState = {
   firstName: '',
@@ -11,26 +11,26 @@ const initialState = {
   email: '',
 };
 
-function RegisterForm({ user, obj }) {
+function RegisterForm({ user, obj, setProfile }) {
   const [formInput, setFormInput] = useState({});
-  const [, setProfile] = useState([]);
   const router = useRouter();
 
   useEffect(() => {
-    getUserByUid(user.uid).then(setProfile);
     if (obj.id) {
       setFormInput(obj);
     }
-  }, [obj, user]);
+  }, [obj]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (obj.id) {
       updateUser(formInput);
       router.push(`/users/${obj.id}`);
     } else {
       const payload = { ...formInput, uid: user.uid };
-      await createUser(payload);
+      const profile = await createUser(payload);
+      setProfile(profile);
       router.push('/');
     }
   };
@@ -79,6 +79,7 @@ RegisterForm.propTypes = {
     imageUrl: PropTypes.string,
     email: PropTypes.string,
   }),
+  setProfile: PropTypes.func.isRequired,
 };
 
 RegisterForm.defaultProps = {

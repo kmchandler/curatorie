@@ -13,12 +13,8 @@ a {
   text-decoration: none;
 }
 
-* {
-  box-sizing: border-box;
-}
-
 body {
-  background-color: #88effd;
+  background-color: #fff4f7;
 }
 
 
@@ -40,28 +36,66 @@ body {
 .profileDropdown {
   background-color: #68797b !important;
   color: #d3dfe1 !important;
- }
+}
 
- .profileDropdownBottomDiv {
+.profileDropdownBottomDiv {
   background-color: #68797b !important;
   color: #d3dfe1 !important;
- }
+}
 
- .dropdown-menu {
+.dropdown-menu {
   background-color: #68797b !important;
   color: #d3dfe1 !important;
   text-align: center;
   margin-top: 10px;
- }
+}
 
- .profileBtn {
+.profileBtn {
   margin-top: 50px;
   margin-bottom: 30px;
- }
+}
 
- .userProfileDiv {
+.userProfileDiv {
   display: flex;
   align-items: center;
   flex-flow: column wrap;
   color: #b6c3c7 !important;
- }
+}
+
+.navbar {
+  color: black;
+}
+
+.indexBoardsPage {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.centerBoards {
+  max-width: 90%;
+}
+
+.cardContainer {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.boardIcon {
+  font-size: 1000%;
+}
+
+.boardCardBody {
+  align-content: center;
+  justify-content: center;
+}
+
+.addBoardBtn {
+  width: 15%;
+  border: none !important;
+  background-color: transparent !important;
+  color: black;
+  margin-bottom: 40px;
+  align-self: center;
+}

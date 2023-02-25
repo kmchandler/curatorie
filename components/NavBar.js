@@ -25,7 +25,7 @@ export default function NavBar({ navObj }) {
   }
 
   return (
-    <nav className="navbar navbar-dark navbar-expand-md .me-auto .ml-auto navBarStyle">
+    <nav className="navbar navbar-expand-md .me-auto .ml-auto navBarStyle">
       <div className="container-fluid navbarContents">
         <Link passHref href="/">
           <h3 className="curatorieTitle pointer" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01">

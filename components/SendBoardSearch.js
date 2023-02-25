@@ -20,7 +20,7 @@ export default function SendBoardSearch({ setFilteredUsers, users }) {
         placeholder="search"
         className="me-2"
         value={input}
-        name="playerSearch"
+        name="userSearch"
         onChange={handleChange}
       />
     </Form>

@@ -17,7 +17,7 @@ const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) 
       getUserByUid(user.uid).then((result) => {
         if (!result.id) {
           Router.push('/users/new');
-        } else if (result) {
+        } else {
           setProfile(result);
         }
       });
@@ -40,7 +40,7 @@ const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) 
   if (user && !profile) {
     return (
       <>
-        <RegisterForm user={user} />
+        <RegisterForm user={user} setProfile={setProfile} />
       </>
     );
   }

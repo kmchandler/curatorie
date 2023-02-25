@@ -26,12 +26,12 @@ function Home() {
   };
 
   return (
-    <div>
+    <div className="indexBoardsPage">
       <h1>Boards</h1>
-      <Button variant="danger" type="button" size="lg" className="copy-btn" onClick={addBoard}>
+      <Button type="button" className="addBoardBtn" onClick={addBoard}>
         add board
       </Button>
-      <div className="d-flex flex-wrap cardContainer boardCardDiv">
+      <div className="cardContainer">
         {boards.map((board) => <BoardCard key={board.id} boardObj={board} onUpdate={getUserAndBoards} />)}
       </div>
     </div>
