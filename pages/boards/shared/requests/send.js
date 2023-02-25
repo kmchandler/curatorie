@@ -22,7 +22,7 @@ function SharedBoards() {
 
   return (
     <div>
-      <h1>share boards</h1>
+      <h3 className="shareBoardsTitle">share boards</h3>
       <div className="d-flex flex-wrap cardContainer boardCardDiv">
         <SendBoardSearch users={users} setFilteredUsers={setFilteredUsers} />
       </div>

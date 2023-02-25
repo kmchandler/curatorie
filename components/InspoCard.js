@@ -21,10 +21,9 @@ function InspoCard({ inspoCardObj, boardItemId, onUpdate }) {
 
   return (
     <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src={inspoCardObj.image_url} />
-      <Card.Body>
-        <div>{inspoCardObj.description}</div>
-        <div>{inspoCardObj.priority ? '⭐' : null}</div>
+      <Card.Img className="cardImage" variant="top" src={inspoCardObj.image_url} style={{ height: '300px' }} />
+      <Card.Body className="inspoCardBody">
+        <div className="inspoDescription">{inspoCardObj.description} {inspoCardObj.priority ? '⭐' : null}</div>
         <div className="inspoCardBtns">
           <button type="button" className="editButton" onClick={editInspoCard}>edit</button>
           <button type="button" className="deleteButton m-2" onClick={deleteThisCard}>

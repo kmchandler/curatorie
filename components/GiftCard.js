@@ -21,15 +21,17 @@ function GiftCard({ giftCardObj, boardItemId, onUpdate }) {
 
   return (
     <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src={giftCardObj.image_url} />
-      <Card.Body>
-        <div>{giftCardObj.item}</div>
-        <div>{giftCardObj.description}</div>
-        <div>${giftCardObj.price}</div>
-        <div>{giftCardObj.occasion}</div>
-        <div>{giftCardObj.gift_for === 'someone_else' ? 'someone else' : 'myself'}</div>
-        <div>{giftCardObj.name}</div>
-        <div>{giftCardObj.priority ? '⭐' : null}</div>
+      <a href={giftCardObj.link}>
+        <Card.Img className="cardImage" variant="top" src={giftCardObj.image_url} style={{ height: '300px' }} />
+      </a>
+      <Card.Body className="giftCardBody">
+        <div className="giftItem">{giftCardObj.item} {giftCardObj.priority ? '⭐' : null}</div>
+        <hr />
+        <div className="giftDescription">{giftCardObj.description}</div>
+        <div className="giftPrice">${giftCardObj.price}</div>
+        <div className="giftOccasion">occasion: {giftCardObj.occasion}</div>
+        <div className="giftFor">{giftCardObj.gift_for === 'someone_else' ? null : 'for: me'}</div>
+        <div className="giftName">{giftCardObj.gift_for === 'someone_else' ? 'for:' : 'from:'} {giftCardObj.name}</div>
         <div className="giftCardBtns">
           <button type="button" className="editButton" onClick={editGiftCard}>edit</button>
           <button type="button" className="deleteButton m-2" onClick={deleteThisCard}>

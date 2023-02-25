@@ -20,10 +20,9 @@ function ListCard({ listCardObj, boardItemId, onUpdate }) {
   };
 
   return (
-    <Card style={{ width: '18rem' }}>
-      <Card.Body>
-        <div>{listCardObj.list_item}</div>
-        <div>{listCardObj.priority ? '⭐' : null}</div>
+    <Card className="listCardDiv" style={{ width: '18rem' }}>
+      <Card.Body className="listCardBody">
+        <div>{listCardObj.list_item} {listCardObj.priority ? '⭐' : null}</div>
         <div className="listCardBtns">
           <button type="button" className="editButton" onClick={editListCard}>edit</button>
           <button type="button" className="deleteButton m-2" onClick={deleteThisCard}>

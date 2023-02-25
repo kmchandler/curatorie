@@ -20,13 +20,15 @@ function PurchaseCard({ purchaseCardObj, boardItemId, onUpdate }) {
   };
   return (
     <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src={purchaseCardObj.image_url} />
-      <Card.Body>
-        <div>{purchaseCardObj.item}</div>
-        <div>{purchaseCardObj.description}</div>
-        <div>${purchaseCardObj.price}</div>
-        <div>{purchaseCardObj.priority ? '⭐' : null}</div>
-        <div className="listCardBtns">
+      <a href={purchaseCardObj.link}>
+        <Card.Img className="cardImage" variant="top" src={purchaseCardObj.image_url} style={{ height: '300px' }} />
+      </a>
+      <Card.Body className="purchaseCardBody">
+        <div className="purchaseItem">{purchaseCardObj.item} {purchaseCardObj.priority ? '⭐' : null}</div>
+        <hr />
+        <div className="purchaseDescription">{purchaseCardObj.description}</div>
+        <div className="purchasePrice">${purchaseCardObj.price}</div>
+        <div className="purchaseCardBtns">
           <button type="button" className="editButton" onClick={editPurchaseCard}>edit</button>
           <button type="button" className="deleteButton m-2" onClick={deleteThisCard}>
             delete

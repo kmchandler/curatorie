@@ -10,6 +10,7 @@ import getIcons from '../api/iconData';
 import { createBoard, updateBoard } from '../api/boardData';
 import { getUserByUid } from '../api/userData';
 import IconRender from './IconRender';
+import TemplateRender from './TemplateRender';
 
 const initialState = {
   boardTypes: '',
@@ -103,14 +104,14 @@ export default function CreateBoard({ obj }) {
   if (page === 1) {
     return (
       <>
-        <div>Select a Board Template</div>
+        <div className="boardTemplate">select a board template</div>
         <div className="boardTypeSelect">
           {boardTypes.map((boardType) => (
-            <div key={boardType.id} className="mb-3">
+            <div key={boardType.id} className="mb-3 boardTypeSelectStyle">
               <Form.Check
                 type="radio"
                 id={boardType.id}
-                label={boardType.type}
+                label={<TemplateRender templateName={boardType.type} />}
                 defaultChecked={checkedBoardType.id === boardType.toString()}
                 value={boardType.id}
                 onChange={handleClickBoardType}

@@ -46,7 +46,7 @@ function RegisterForm({ user, obj, setProfile }) {
   return (
     <div className="profilePage profilePageForm">
       <form onSubmit={handleSubmit}>
-        <h2 className="updateProfileHeader">profile</h2>
+        <h2 className="updateProfileHeader">create profile</h2>
         <input required type="text" name="first_name" value={formInput.first_name} className="form-control" placeholder="first name" onChange={handleChange} />
         <br />
         <input required type="text" name="last_name" value={formInput.last_name} className="form-control" placeholder="last name" onChange={handleChange} />
@@ -56,6 +56,7 @@ function RegisterForm({ user, obj, setProfile }) {
         <input type="url" name="image_url" value={formInput.image_url} className="form-control" placeholder="image url" onChange={handleChange} />
         <br />
         <input type="email" name="email" value={formInput.email} className="form-control" placeholder="email" onChange={handleChange} />
+        <br />
         <div className="submitProfileButtonDiv">
           <button type="submit" className="submitProfileBtn" onSubmit={handleSubmit}>
             submit

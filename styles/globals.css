@@ -14,7 +14,7 @@ a {
 }
 
 body {
-  background-color: #fff4f7;
+  background-color: #f7eded;
 }
 
 
@@ -34,17 +34,17 @@ body {
 
 
 .profileDropdown {
-  background-color: #68797b !important;
+  background-color: #B4656F !important;
   color: #d3dfe1 !important;
 }
 
 .profileDropdownBottomDiv {
-  background-color: #68797b !important;
+  background-color: #B4656F !important;
   color: #d3dfe1 !important;
 }
 
 .dropdown-menu {
-  background-color: #68797b !important;
+  background-color: #B4656F!important;
   color: #d3dfe1 !important;
   text-align: center;
   margin-top: 10px;
@@ -98,4 +98,223 @@ body {
   color: black;
   margin-bottom: 40px;
   align-self: center;
+  margin-top: 30px;
+}
+
+.profilePageForm {
+  margin-left: 25%;
+  margin-right: 25%;
+  margin-top: 5%;
+}
+
+.giftCardDiv {
+  margin-top: 25px;
+  text-align: center;
+}
+
+.giftItem {
+  text-align: center;
+}
+
+.giftDescription {
+  margin-bottom: 5px;
+}
+
+.giftPrice {
+  margin-bottom: 5px;
+}
+
+.giftOccasion {
+  margin-bottom: 5px;
+}
+
+.giftFor{
+  margin-bottom: 5px;
+}
+
+.giftName{
+  margin-bottom: 5px;
+}
+
+.giftCardBody {
+  margin-top: 5px;
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+.inspoCardDiv {
+  margin-top: 25px;
+  text-align: center;
+}
+
+.inspoCardBody {
+  margin-top: 5px;
+  margin-left: 25px;
+  margin-right: 25px;
+  text-align: center;
+}
+
+.listCardDiv {
+  margin-top: 25px;
+  text-align: center;
+}
+
+.listCardBody {
+  margin-top: 5px;
+  margin-left: 25px;
+  margin-right: 25px;
+  text-align: center;
+}
+
+.purchaseCardDiv {
+  margin-top: 25px;
+  text-align: center;
+}
+
+.purchaseCardBody {
+  margin-top: 5px;
+  margin-left: 25px;
+  margin-right: 25px;
+  text-align: center;
+}
+
+.purchaseDescription {
+  margin-bottom: 5px;
+}
+
+.purchasePrice {
+  margin-bottom: 5px;
+}
+
+.addCardBtn{
+  border: none !important;
+  background-color: transparent !important;
+  color: black;
+  justify-self: center !important;
+  text-align: center;
+}
+
+.profileCardDiv {
+  text-align: center;
+}
+
+.profilePagePic {
+  object-fit: cover;
+  height: 300px;
+  width: 300px;
+  margin-bottom: 10px;
+}
+
+.navLogo {
+  width: 100px !important;
+  height: 50px !important;
+}
+
+.loginPage {
+  display: flex;
+  flex-direction: column;
+  width: 680px;
+  margin: auto;
+  margin-top: 30px;
+}
+
+.signInLogo {
+  width: 680px !important;
+  height: 791px !important;
+}
+
+
+.signInButton {
+  width: 15%;
+  border: none !important;
+  background-color: transparent !important;
+  color: black;
+  margin-bottom: 40px;
+  align-self: center;
+}
+
+.logoContainer {
+  max-width: 680px !important;
+  max-height: 156px !important;
+  margin: auto;
+  margin-top: 20px;
+}
+
+.boardTemplate {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: xx-large;
+}
+
+.giftBoardTemplateTitle {
+  font-size: x-large;
+}
+
+.inspoBoardTemplateTitle {
+  font-size: x-large;
+}
+
+.listBoardTemplateTitle {
+  font-size: x-large;
+}
+
+.purchaseBoardTemplateTitle {
+  font-size: x-large;
+}
+
+.boardTypeSelectStyle {
+  font-size: x-large;
+}
+
+.sharedBoardsTitle {
+  text-align: center;
+}
+
+.shareRequestsBtn {
+  text-align: center;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.shareRequestsTitle {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.shareBoardsTitle {
+  text-align: center;
+}
+
+.cardImage {
+  object-fit: cover;
+  width: 100%;
+  min-height: 50%;
+}
+
+.shareRequestCardDiv {
+  display: flex;
+}
+
+.shareRequestCardBody {
+  align-content: center;
+  justify-content: center;
+  margin: auto;
+  text-align: center;
+}
+
+.sharedBoardCardBody {
+  align-content: center;
+  justify-content: center;
+  margin: auto;
+  text-align: center;
+}
+
+.boardCardSentBy {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.allSharedBoardsDiv {
+  display: flex;
 }

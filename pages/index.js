@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { Button } from 'react-bootstrap';
+import Image from 'next/image';
+import logo from '../styles/curatorie_logo_name.png';
 import { useAuth } from '../utils/context/authContext';
 import { getBoardsByUserId } from '../api/boardData';
 import { getUserByUid } from '../api/userData';
@@ -27,7 +29,9 @@ function Home() {
 
   return (
     <div className="indexBoardsPage">
-      <h1>Boards</h1>
+      <div className="logoContainer">
+        <Image src={logo} className="indexLogo" alt="logo" />
+      </div>
       <Button type="button" className="addBoardBtn" onClick={addBoard}>
         add board
       </Button>

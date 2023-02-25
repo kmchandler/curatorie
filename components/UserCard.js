@@ -12,17 +12,17 @@ export default function UserCard({ userObj, boardId }) {
   const sendBoard = async () => {
     const payload = { user_id: userObj.id, board_id: boardId };
     await createShareRequest(payload);
-    router.push('/boards/all');
+    router.push('/');
   };
 
   return (
-    <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src={userObj.image_url} />
+    <Card style={{ width: '20rem' }}>
+      <Card.Img className="cardImage" variant="top" src={userObj.image_url} style={{ height: '300px' }} />
       <Card.Body>
         <br />
-        <h1>{userObj.first_name} {userObj.last_name}</h1>
-        <h2>{userObj.username}</h2>
-        <h2>{userObj.email}</h2>
+        <h2>{userObj.first_name} {userObj.last_name}</h2>
+        <h4>{userObj.username}</h4>
+        <h4>{userObj.email}</h4>
         <br />
         <button type="button" className="sendButton m-2" onClick={sendBoard}>
           send
