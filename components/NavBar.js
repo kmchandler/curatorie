@@ -41,14 +41,14 @@ export default function NavBar({ navObj }) {
           <ul className="navbar-nav me-auto">
             <li className="nav-item">
               <Link passHref href="/">
-                <a className="nav-link">
+                <a className="nav-link myBoardsLink">
                   my boards
                 </a>
               </Link>
             </li>
             <li className="nav-item">
               <Link passHref href="/boards/shared/all">
-                <a className="nav-link">
+                <a className="nav-link sharedBoardsLink">
                   shared boards
                 </a>
               </Link>

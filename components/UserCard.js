@@ -4,6 +4,7 @@ import React from 'react';
 import Card from 'react-bootstrap/Card';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
+import { GrSend } from 'react-icons/gr';
 import { createShareRequest } from '../api/shareRequestData';
 
 export default function UserCard({ userObj, boardId }) {
@@ -16,16 +17,14 @@ export default function UserCard({ userObj, boardId }) {
   };
 
   return (
-    <Card style={{ width: '20rem' }}>
+    <Card className="userCard" style={{ width: '20rem' }}>
       <Card.Img className="cardImage" variant="top" src={userObj.image_url} style={{ height: '300px' }} />
-      <Card.Body>
+      <Card.Body className="userCardBody">
         <br />
         <h2>{userObj.first_name} {userObj.last_name}</h2>
-        <h4>{userObj.username}</h4>
-        <h4>{userObj.email}</h4>
-        <br />
+        <h4 className="userName">{userObj.username}</h4>
         <button type="button" className="sendButton m-2" onClick={sendBoard}>
-          send
+          <GrSend />
         </button>
       </Card.Body>
     </Card>
