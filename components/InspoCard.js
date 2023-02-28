@@ -25,8 +25,8 @@ function InspoCard({ inspoCardObj, boardItemId, onUpdate }) {
       <Card.Body className="inspoCardBody">
         <div className="inspoDescription">{inspoCardObj.description} {inspoCardObj.priority ? '⭐' : null}</div>
         <div className="inspoCardBtns">
-          <button type="button" className="editButton" onClick={editInspoCard}>edit</button>
-          <button type="button" className="deleteButton m-2" onClick={deleteThisCard}>
+          <button type="button" className="editInspoButton" onClick={editInspoCard}>edit</button>
+          <button type="button" className="deleteInspoButton m-2" onClick={deleteThisCard}>
             delete
           </button>
         </div>

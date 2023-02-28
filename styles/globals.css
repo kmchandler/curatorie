@@ -140,6 +140,8 @@ body {
   margin-top: 5px;
   margin-left: 25px;
   margin-right: 25px;
+  display: flex;
+  flex-direction: column;
 }
 
 .inspoCardDiv {
@@ -152,6 +154,8 @@ body {
   margin-left: 25px;
   margin-right: 25px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .listCardDiv {
@@ -164,6 +168,8 @@ body {
   margin-left: 25px;
   margin-right: 25px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .purchaseCardDiv {
@@ -176,6 +182,8 @@ body {
   margin-left: 25px;
   margin-right: 25px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .purchaseDescription {
@@ -186,12 +194,21 @@ body {
   margin-bottom: 5px;
 }
 
-.addCardBtn{
+.cardPageDiv {
+  display: flex;
+  flex-direction: column;
+}
+
+.addCardBtn {
   border: none !important;
   background-color: transparent !important;
   color: black;
-  justify-self: center !important;
   text-align: center;
+  margin-top: 10px;
+}
+
+.addCardBtn:hover {
+  font-style: italic;
 }
 
 .profileCardDiv {
@@ -317,4 +334,165 @@ body {
 
 .allSharedBoardsDiv {
   display: flex;
+}
+
+.custom-btn {
+  background-color: transparent;
+  border: none;
+  margin-left: auto;
+  font-size: xx-large;
+}
+
+.custom-btn:hover {
+  font-weight: bold;
+}
+
+.boardCardBtns {
+  display: flex;
+}
+
+.boardCardModalBtns {
+  justify-content: center;
+}
+
+.editBoardButton {
+  background-color: transparent;
+  border: none;
+}
+
+.deleteBoardButton {
+  background-color: transparent;
+  border: none;
+}
+
+.shareBoardButton {
+  background-color: transparent;
+  border: none;
+}
+
+.editBoardButton:hover {
+  border: solid;
+  border-radius: 4px;
+  border-width: 1px;
+}
+
+.deleteBoardButton:hover {
+  border: solid;
+  border-radius: 4px;
+  border-width: 1px;
+}
+
+.shareBoardButton:hover {
+  border: solid;
+  border-radius: 4px;
+  border-width: 1px;
+}
+
+.editGiftButton {
+  background-color: transparent;
+  border: solid;
+  border-radius: 4px;
+  border-width: 1px;
+}
+
+.deleteGiftButton {
+  background-color: transparent;
+  border: solid;
+  border-radius: 4px;
+  border-width: 1px;
+}
+
+.editGiftButton:hover {
+  border-width: 2px;
+}
+
+.deleteGiftButton:hover {
+  border-width: 2px;
+}
+
+.giftCardBtns {
+  margin-top: auto;
+}
+
+.inspoCardBtns {
+  margin-top: auto;
+}
+
+.listCardBtns {
+  margin-top: auto;
+}
+
+.purchaseCardBtns {
+  margin-top: auto;
+}
+
+.editInspoButton {
+  background-color: transparent;
+  border: solid;
+  border-radius: 4px;
+  border-width: 1px;
+}
+
+.deleteInspoButton {
+  background-color: transparent;
+  border: solid;
+  border-radius: 4px;
+  border-width: 1px;
+}
+
+.editInspoButton:hover {
+  border-width: 2px;
+}
+
+.deleteInspoButton:hover {
+  border-width: 2px;
+}
+
+.editListButton {
+  background-color: transparent;
+  border: solid;
+  border-radius: 4px;
+  border-width: 1px;
+}
+
+.deleteListButton {
+  background-color: transparent;
+  border: solid;
+  border-radius: 4px;
+  border-width: 1px;
+}
+
+.editListButton:hover {
+  border-width: 2px;
+}
+
+.deleteListButton:hover {
+  border-width: 2px;
+}
+
+.editPurchaseButton {
+  background-color: transparent;
+  border: solid;
+  border-radius: 4px;
+  border-width: 1px;
+}
+
+.deletePurchaseButton {
+  background-color: transparent;
+  border: solid;
+  border-radius: 4px;
+  border-width: 1px;
+}
+
+.editPurchaseButton:hover {
+  border-width: 2px;
+}
+
+.deletePurchaseButton:hover {
+  border-width: 2px;
+}
+
+.boardNameHeader {
+  text-align: center;
+  margin-bottom: 5px;
 }

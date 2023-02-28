@@ -24,8 +24,8 @@ function ListCard({ listCardObj, boardItemId, onUpdate }) {
       <Card.Body className="listCardBody">
         <div>{listCardObj.list_item} {listCardObj.priority ? '⭐' : null}</div>
         <div className="listCardBtns">
-          <button type="button" className="editButton" onClick={editListCard}>edit</button>
-          <button type="button" className="deleteButton m-2" onClick={deleteThisCard}>
+          <button type="button" className="editListButton" onClick={editListCard}>edit</button>
+          <button type="button" className="deleteListButton m-2" onClick={deleteThisCard}>
             delete
           </button>
         </div>

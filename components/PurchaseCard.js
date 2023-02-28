@@ -29,8 +29,8 @@ function PurchaseCard({ purchaseCardObj, boardItemId, onUpdate }) {
         <div className="purchaseDescription">{purchaseCardObj.description}</div>
         <div className="purchasePrice">${purchaseCardObj.price}</div>
         <div className="purchaseCardBtns">
-          <button type="button" className="editButton" onClick={editPurchaseCard}>edit</button>
-          <button type="button" className="deleteButton m-2" onClick={deleteThisCard}>
+          <button type="button" className="editPurchaseButton" onClick={editPurchaseCard}>edit</button>
+          <button type="button" className="deletePurchaseButton m-2" onClick={deleteThisCard}>
             delete
           </button>
         </div>
