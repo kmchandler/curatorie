@@ -2,20 +2,14 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Link from 'next/link';
-import { deleteSingleSharedBoard } from '../api/sharedBoardData';
 import { getBoardById } from '../api/boardData';
 import IconRender from './IconRender';
+import SharedBoardButtonsModal from './SharedBoardButtonsModal';
 
 function SharedBoardCard({
   boardObj, onUpdate,
 }) {
   const [sharedBoard, setSharedBoard] = useState([]);
-
-  const deleteThisBoard = () => {
-    if (window.confirm(`leave ${sharedBoard.name}?`)) {
-      deleteSingleSharedBoard(boardObj.id).then(() => onUpdate());
-    }
-  };
 
   const getSharedBoard = async () => {
     const theBoard = await getBoardById(boardObj.board);
@@ -28,21 +22,16 @@ function SharedBoardCard({
 
   return (
     <>
-      <Card className="boardCardDiv sharedBoardCardDiv" style={{ width: '25%', margin: '10px', height: '10%' }}>
+      <Card className="sharedBoardCardDiv" style={{ width: '25%', margin: '10px', height: '10%' }}>
         <Card.Body className="cardBody sharedBoardCardBody">
           <Link href={`/boards/${sharedBoard.id}`} passHref>
             <div className="cardDetails">
               <p className="boardIcon"><IconRender iconName={sharedBoard.icon} /></p>
-              <p className="boardCardType">{sharedBoard.name?.toLowerCase()}</p>
+              <p className="boardCardName">{sharedBoard.name?.toLowerCase()}</p>
             </div>
           </Link>
-          <div className="sharedBoardCardBtns">
-            <Link href={`/boards/edit/${sharedBoard.id}`} passHref>
-              <button type="button" className="editButton">edit</button>
-            </Link>
-            <button type="button" className="deleteButton m-2" onClick={deleteThisBoard}>
-              leave board
-            </button>
+          <div className="sharedBoardCardButtons">
+            <SharedBoardButtonsModal boardObj={boardObj} onUpdate={onUpdate} />
           </div>
         </Card.Body>
       </Card>

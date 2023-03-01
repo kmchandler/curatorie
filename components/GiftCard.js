@@ -33,8 +33,8 @@ function GiftCard({ giftCardObj, boardItemId, onUpdate }) {
         <div className="giftFor">{giftCardObj.gift_for === 'someone_else' ? null : 'for: me'}</div>
         <div className="giftName">{giftCardObj.gift_for === 'someone_else' ? 'for:' : 'from:'} {giftCardObj.name}</div>
         <div className="giftCardBtns">
-          <button type="button" className="editButton" onClick={editGiftCard}>edit</button>
-          <button type="button" className="deleteButton m-2" onClick={deleteThisCard}>
+          <button type="button" className="editGiftButton" onClick={editGiftCard}>edit</button>
+          <button type="button" className="deleteGiftButton m-2" onClick={deleteThisCard}>
             delete
           </button>
         </div>

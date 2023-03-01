@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Button from 'react-bootstrap/Button';
 import { useRouter } from 'next/router';
 import GiftCard from '../../components/GiftCard';
 import InspoCard from '../../components/InspoCard';
@@ -92,10 +91,11 @@ export default function IndividualBoard() {
 
   if (boardTypeObj.type === 'gift card') {
     return (
-      <div>
-        <Button className="addCardBtn" variant="primary" type="button" onClick={addGiftCard}>
-          Add Card
-        </Button>
+      <div className="cardPageDiv">
+        <h3 className="boardNameHeader">{boardItem.name}</h3>
+        <button className="addCardBtn" type="button" onClick={addGiftCard}>
+          add card
+        </button>
         <div className="d-flex flex-wrap cardContainer giftCardDiv">
           {giftCards.map((giftCard) => <GiftCard key={giftCard.id} boardItemId={boardItem.id} giftCardObj={giftCard} onUpdate={getInfo} />)}
         </div>
@@ -104,9 +104,10 @@ export default function IndividualBoard() {
   } if (boardTypeObj.type === 'inspo card') {
     return (
       <div className="cardPageDiv">
-        <Button className="addCardBtn" variant="primary" type="button" onClick={addInspoCard}>
-          Add Card
-        </Button>
+        <h3 className="boardNameHeader">{boardItem.name}</h3>
+        <button className="addCardBtn" type="button" onClick={addInspoCard}>
+          add card
+        </button>
         <div className="d-flex flex-wrap cardContainer inspoCardDiv">
           {inspoCards.map((inspoCard) => <InspoCard key={inspoCard.id} boardItemId={boardItem.id} inspoCardObj={inspoCard} onUpdate={getInfo} />)}
         </div>
@@ -114,10 +115,11 @@ export default function IndividualBoard() {
     );
   } if (boardTypeObj.type === 'list card') {
     return (
-      <div>
-        <Button className="addCardBtn" variant="primary" type="button" onClick={addListCard}>
-          Add Card
-        </Button>
+      <div className="cardPageDiv">
+        <h3 className="boardNameHeader">{boardItem.name}</h3>
+        <button className="addCardBtn" type="button" onClick={addListCard}>
+          add card
+        </button>
         <div className="d-flex flex-wrap cardContainer listCardDiv">
           {listCards.map((listCard) => <ListCard key={listCard.id} boardItemId={boardItem.id} listCardObj={listCard} onUpdate={getInfo} />)}
         </div>
@@ -125,10 +127,11 @@ export default function IndividualBoard() {
     );
   } if (boardTypeObj.type === 'purchase card') {
     return (
-      <div>
-        <Button className="addCardBtn" variant="primary" type="button" onClick={addPurchaseCard}>
-          Add Card
-        </Button>
+      <div className="cardPageDiv">
+        <h3 className="boardNameHeader">{boardItem.name}</h3>
+        <button className="addCardBtn" type="button" onClick={addPurchaseCard}>
+          add card
+        </button>
         <div className="d-flex flex-wrap cardContainer purchaseCardDiv">
           {purchaseCards.map((purchaseCard) => <PurchaseCard key={purchaseCard.id} boardItemId={boardItem.id} purchaseCardObj={purchaseCard} onUpdate={getInfo} />)}
         </div>

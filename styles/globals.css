@@ -1,4 +1,9 @@
 @import 'bootstrap/dist/css/bootstrap.css';
+@import '@fontsource/roboto/300.css';
+@import '@fontsource/roboto/400.css';
+@import '@fontsource/roboto/500.css';
+@import '@fontsource/roboto/700.css';
+
 
 html,
 body {
@@ -101,6 +106,10 @@ body {
   margin-top: 30px;
 }
 
+.addBoardBtn:hover {
+  font-style: italic;
+}
+
 .profilePageForm {
   margin-left: 25%;
   margin-right: 25%;
@@ -140,6 +149,8 @@ body {
   margin-top: 5px;
   margin-left: 25px;
   margin-right: 25px;
+  display: flex;
+  flex-direction: column;
 }
 
 .inspoCardDiv {
@@ -152,6 +163,8 @@ body {
   margin-left: 25px;
   margin-right: 25px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .listCardDiv {
@@ -164,6 +177,8 @@ body {
   margin-left: 25px;
   margin-right: 25px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .purchaseCardDiv {
@@ -176,6 +191,8 @@ body {
   margin-left: 25px;
   margin-right: 25px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .purchaseDescription {
@@ -186,16 +203,26 @@ body {
   margin-bottom: 5px;
 }
 
-.addCardBtn{
+.cardPageDiv {
+  display: flex;
+  flex-direction: column;
+}
+
+.addCardBtn {
   border: none !important;
   background-color: transparent !important;
   color: black;
-  justify-self: center !important;
   text-align: center;
+  margin-top: 10px;
+}
+
+.addCardBtn:hover {
+  font-style: italic;
 }
 
 .profileCardDiv {
   text-align: center;
+  color: black;
 }
 
 .profilePagePic {
@@ -277,6 +304,15 @@ body {
   margin-bottom: 20px;
 }
 
+.requestsButton {
+  background-color: transparent;
+  border: none;
+}
+
+.requestsButton:hover {
+  font-style: italic;
+}
+
 .shareRequestsTitle {
   text-align: center;
   margin-bottom: 30px;
@@ -317,4 +353,246 @@ body {
 
 .allSharedBoardsDiv {
   display: flex;
+}
+
+.custom-btn {
+  background-color: transparent;
+  border: none;
+  margin-left: auto;
+  font-size: xx-large;
+}
+
+.custom-btn:hover {
+  font-weight: bold;
+}
+
+.boardCardBtns {
+  display: flex;
+}
+
+.boardCardModalBtns {
+  justify-content: center;
+}
+
+.editBoardButton {
+  background-color: transparent;
+  border: none;
+}
+
+.deleteBoardButton {
+  background-color: transparent;
+  border: none;
+}
+
+.shareBoardButton {
+  background-color: transparent;
+  border: none;
+}
+
+.editBoardButton:hover {
+  border: solid;
+  border-radius: 4px;
+  border-width: 1px;
+}
+
+.deleteBoardButton:hover {
+  border: solid;
+  border-radius: 4px;
+  border-width: 1px;
+}
+
+.shareBoardButton:hover {
+  border: solid;
+  border-radius: 4px;
+  border-width: 1px;
+}
+
+.editGiftButton {
+  background-color: transparent;
+  border: solid;
+  border-radius: 4px;
+  border-width: 1px;
+}
+
+.deleteGiftButton {
+  background-color: transparent;
+  border: solid;
+  border-radius: 4px;
+  border-width: 1px;
+}
+
+.editGiftButton:hover {
+  border-width: 2px;
+}
+
+.deleteGiftButton:hover {
+  border-width: 2px;
+}
+
+.giftCardBtns {
+  margin-top: auto;
+}
+
+.inspoCardBtns {
+  margin-top: auto;
+}
+
+.listCardBtns {
+  margin-top: auto;
+}
+
+.purchaseCardBtns {
+  margin-top: auto;
+}
+
+.editInspoButton {
+  background-color: transparent;
+  border: solid;
+  border-radius: 4px;
+  border-width: 1px;
+}
+
+.deleteInspoButton {
+  background-color: transparent;
+  border: solid;
+  border-radius: 4px;
+  border-width: 1px;
+}
+
+.editInspoButton:hover {
+  border-width: 2px;
+}
+
+.deleteInspoButton:hover {
+  border-width: 2px;
+}
+
+.editListButton {
+  background-color: transparent;
+  border: solid;
+  border-radius: 4px;
+  border-width: 1px;
+}
+
+.deleteListButton {
+  background-color: transparent;
+  border: solid;
+  border-radius: 4px;
+  border-width: 1px;
+}
+
+.editListButton:hover {
+  border-width: 2px;
+}
+
+.deleteListButton:hover {
+  border-width: 2px;
+}
+
+.editPurchaseButton {
+  background-color: transparent;
+  border: solid;
+  border-radius: 4px;
+  border-width: 1px;
+}
+
+.deletePurchaseButton {
+  background-color: transparent;
+  border: solid;
+  border-radius: 4px;
+  border-width: 1px;
+}
+
+.editPurchaseButton:hover {
+  border-width: 2px;
+}
+
+.deletePurchaseButton:hover {
+  border-width: 2px;
+}
+
+.boardNameHeader {
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.myBoardsLink {
+  color: black;
+  margin-left: 8px;
+  margin-top: -8px;
+}
+
+.sharedBoardsLink {
+  color: black;
+  margin-right: -1px;
+  margin-top: -8px;
+}
+
+.userCard {
+  display: flex;
+  flex-direction: column;
+}
+
+.userCardBody {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.sendButton {
+  background-color: transparent;
+  border: none;
+  font-size: x-large;
+  align-self: flex-end;
+}
+
+.userName {
+  margin-bottom: -40px;
+}
+
+.shareSearchBarDiv {
+  width: 30%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 25px;
+  margin-bottom: 35px;
+}
+
+.userCard {
+  margin: 3px;
+  margin-bottom: 35px;
+}
+
+.navBarLinksDiv{
+  margin-top: 9px;
+}
+
+.joinBoardButton {
+  background-color: transparent;
+  border: solid;
+  border-radius: 4px;
+  border-width: 1px;
+}
+
+.declineBoardButton {
+  background-color: transparent;
+  border: solid;
+  border-radius: 4px;
+  border-width: 1px;
+}
+
+.profileButton {
+  border: none !important;
+  background-color: transparent !important;
+  color: black;
+  text-align: center;
+}
+
+.profileButton:hover {
+  font-style: italic;
+}
+
+.sharedBoardCardButtons {
+  display: flex;
+  width: 140%;
 }

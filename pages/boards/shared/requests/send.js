@@ -23,11 +23,11 @@ function SharedBoards() {
   return (
     <div>
       <h3 className="shareBoardsTitle">share boards</h3>
-      <div className="d-flex flex-wrap cardContainer boardCardDiv">
-        <SendBoardSearch users={users} setFilteredUsers={setFilteredUsers} />
+      <div className="shareSearchBarDiv">
+        <SendBoardSearch className="shareSearchBar" users={users} setFilteredUsers={setFilteredUsers} />
       </div>
       <div className="d-flex flex-wrap cardContainer usersCardDiv">
-        {filteredUsers.map((user) => <UserCard key={user.id} userObj={user} boardId={boardId} onUpdate={getAllTheUsers} />)}
+        {filteredUsers.map((user) => <UserCard className="userCard" key={user.id} userObj={user} boardId={boardId} onUpdate={getAllTheUsers} />)}
       </div>
     </div>
   );
