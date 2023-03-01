@@ -1,4 +1,9 @@
 @import 'bootstrap/dist/css/bootstrap.css';
+@import '@fontsource/roboto/300.css';
+@import '@fontsource/roboto/400.css';
+@import '@fontsource/roboto/500.css';
+@import '@fontsource/roboto/700.css';
+
 
 html,
 body {
@@ -217,6 +222,7 @@ body {
 
 .profileCardDiv {
   text-align: center;
+  color: black;
 }
 
 .profilePagePic {
@@ -513,10 +519,13 @@ body {
 .myBoardsLink {
   color: black;
   margin-left: 8px;
+  margin-top: -8px;
 }
 
 .sharedBoardsLink {
   color: black;
+  margin-right: -1px;
+  margin-top: -8px;
 }
 
 .userCard {
@@ -552,4 +561,38 @@ body {
 .userCard {
   margin: 3px;
   margin-bottom: 35px;
+}
+
+.navBarLinksDiv{
+  margin-top: 9px;
+}
+
+.joinBoardButton {
+  background-color: transparent;
+  border: solid;
+  border-radius: 4px;
+  border-width: 1px;
+}
+
+.declineBoardButton {
+  background-color: transparent;
+  border: solid;
+  border-radius: 4px;
+  border-width: 1px;
+}
+
+.profileButton {
+  border: none !important;
+  background-color: transparent !important;
+  color: black;
+  text-align: center;
+}
+
+.profileButton:hover {
+  font-style: italic;
+}
+
+.sharedBoardCardButtons {
+  display: flex;
+  width: 140%;
 }

@@ -1,21 +1,53 @@
 /* eslint-disable no-template-curly-in-string */
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable jsx-a11y/anchor-is-valid */
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import Image from 'next/image';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { Badge } from '@mui/material';
+import { useAuth } from '../utils/context/authContext';
 import logo from '../styles/curatorie_nav_logo.png';
 import { signOut } from '../utils/auth';
 import ProfileDropdown from './ProfileDropdown';
+import { getShareRequestsByUserId } from '../api/shareRequestData';
+import { getUserByUid } from '../api/userData';
 
 export default function NavBar({ navObj }) {
   const router = useRouter();
+  const { user } = useAuth();
+  const [appUser, setAppUser] = useState([]);
+  const [shareRequests, setShareRequests] = useState([]);
 
   const goToProfile = () => {
     router.push(`/users/${navObj.id}`);
   };
+
+  const getUser = async () => {
+    const theUser = await getUserByUid(user.uid);
+    setAppUser(theUser);
+  };
+
+  const getRequests = async () => {
+    const theRequests = await getShareRequestsByUserId(appUser.id);
+    setShareRequests(theRequests);
+  };
+
+  const onUpdate = () => {
+    getRequests();
+  };
+
+  useEffect(() => {
+    getUser();
+  }, [user]);
+
+  useEffect(() => {
+    if (appUser.id) {
+      getRequests();
+    }
+  }, [appUser]);
 
   let profileImage = '';
 
@@ -37,7 +69,7 @@ export default function NavBar({ navObj }) {
           <span className="navbar-toggler-icon" />
         </button>
 
-        <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <div className="collapse navbar-collapse navBarLinksDiv" id="navbarTogglerDemo01">
           <ul className="navbar-nav me-auto">
             <li className="nav-item">
               <Link passHref href="/">
@@ -47,11 +79,13 @@ export default function NavBar({ navObj }) {
               </Link>
             </li>
             <li className="nav-item">
-              <Link passHref href="/boards/shared/all">
-                <a className="nav-link sharedBoardsLink">
-                  shared boards
-                </a>
-              </Link>
+              <Badge className="requestCounterBadge" badgeContent={shareRequests.length} onUpate={onUpdate} max={99} color="success">
+                <Link passHref href="/boards/shared/all">
+                  <a className="nav-link sharedBoardsLink">
+                    shared boards
+                  </a>
+                </Link>
+              </Badge>
             </li>
           </ul>
         </div>

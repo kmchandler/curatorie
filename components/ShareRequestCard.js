@@ -57,7 +57,6 @@ function ShareRequestCard({
       getSender();
     }
   }, [board]);
-  console.warn(board);
 
   return (
     <>
@@ -71,10 +70,10 @@ function ShareRequestCard({
             </div>
           </Link>
           <div className="shareRequestCardBtns">
-            <button type="button" className="joinButton m-2" onClick={joinThisBoard}>
+            <button type="button" className="joinBoardButton m-2" onClick={joinThisBoard}>
               join board
             </button>
-            <button type="button" className="joinButton m-2" onClick={rejectRequest}>
+            <button type="button" className="declineBoardButton m-2" onClick={rejectRequest}>
               decline
             </button>
           </div>
