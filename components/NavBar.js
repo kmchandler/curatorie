@@ -1,53 +1,23 @@
 /* eslint-disable no-template-curly-in-string */
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import Image from 'next/image';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Badge } from '@mui/material';
-import { useAuth } from '../utils/context/authContext';
 import logo from '../styles/curatorie_nav_logo.png';
 import { signOut } from '../utils/auth';
 import ProfileDropdown from './ProfileDropdown';
-import { getShareRequestsByUserId } from '../api/shareRequestData';
-import { getUserByUid } from '../api/userData';
 
-export default function NavBar({ navObj }) {
+export default function NavBar({ navObj, shareRequests }) {
   const router = useRouter();
-  const { user } = useAuth();
-  const [appUser, setAppUser] = useState([]);
-  const [shareRequests, setShareRequests] = useState([]);
 
   const goToProfile = () => {
     router.push(`/users/${navObj.id}`);
   };
-
-  const getUser = async () => {
-    const theUser = await getUserByUid(user.uid);
-    setAppUser(theUser);
-  };
-
-  const getRequests = async () => {
-    const theRequests = await getShareRequestsByUserId(appUser.id);
-    setShareRequests(theRequests);
-  };
-
-  const onUpdate = () => {
-    getRequests();
-  };
-
-  useEffect(() => {
-    getUser();
-  }, [user]);
-
-  useEffect(() => {
-    if (appUser.id) {
-      getRequests();
-    }
-  }, [appUser]);
 
   let profileImage = '';
 
@@ -79,10 +49,17 @@ export default function NavBar({ navObj }) {
               </Link>
             </li>
             <li className="nav-item">
-              <Badge className="requestCounterBadge" badgeContent={shareRequests.length} onUpate={onUpdate} max={99} color="success">
-                <Link passHref href="/boards/shared/all">
-                  <a className="nav-link sharedBoardsLink">
-                    shared boards
+              <Link passHref href="/boards/shared/all">
+                <a className="nav-link sharedBoardsLink">
+                  shared boards
+                </a>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Badge className="requestCounterBadge" badgeContent={shareRequests.length} max={99} color="success">
+                <Link passHref href="/boards/shared/requests/all">
+                  <a className="nav-link shareRequestsLink">
+                    share requests
                   </a>
                 </Link>
               </Badge>
@@ -120,5 +97,8 @@ NavBar.propTypes = {
   navObj: PropTypes.shape({
     id: PropTypes.string,
     image_url: PropTypes.string,
+  }).isRequired,
+  shareRequests: PropTypes.shape({
+    length: PropTypes.string,
   }).isRequired,
 };

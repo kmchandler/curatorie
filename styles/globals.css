@@ -528,6 +528,12 @@ body {
   margin-top: -8px;
 }
 
+.shareRequestsLink {
+  color: black;
+  margin-right: -1px;
+  margin-top: -8px;
+}
+
 .userCard {
   display: flex;
   flex-direction: column;
