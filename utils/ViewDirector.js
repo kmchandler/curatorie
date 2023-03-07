@@ -32,15 +32,12 @@ const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) 
     setShareRequests(theRequests);
   };
 
+  // router.asPath to update shareRequests badge when page changes
   useEffect(() => {
     if (profile?.id) {
       getRequests();
     }
-  }, [profile]);
-
-  useEffect(() => {
-    getRequests();
-  }, [router.asPath]);
+  }, [profile, router.asPath]);
 
   if (userLoading) {
     return <Loading />;
