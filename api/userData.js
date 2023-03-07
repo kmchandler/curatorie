@@ -22,6 +22,19 @@ const getAllUsers = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const searchUsers = (input) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/search_users?query=${input}`)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(response.message);
+      }
+      return response;
+    })
+    .then((response) => response.json())
+    .then(resolve)
+    .catch(reject);
+});
+
 const createUser = (user) => new Promise((resolve, reject) => {
   const userObj = {
     uid: user.uid,
@@ -93,4 +106,5 @@ export {
   updateUser,
   getUserByUserId,
   getAllUsers,
+  searchUsers,
 };
