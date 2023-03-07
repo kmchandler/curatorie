@@ -30,18 +30,31 @@ export default function IndividualBoard() {
     setBoardTypeObj(theBoardType[0]);
   };
 
+  const sortResults = (results) => {
+    results.sort((card) => {
+      if (card.priority) {
+        return -1;
+      }
+      return 1;
+    });
+  };
+
   const getCards = async () => {
     if (boardTypeObj.type === 'gift card') {
       const theGiftCards = await getGiftCardsByBoardId(id);
+      sortResults(theGiftCards);
       setGiftCards(theGiftCards);
     } if (boardTypeObj.type === 'inspo card') {
       const theInspoCards = await getInspoCardsByBoardId(id);
+      sortResults(theInspoCards);
       setInspoCards(theInspoCards);
     } if (boardTypeObj.type === 'list card') {
       const theListCards = await getListCardsByBoardId(id);
+      sortResults(theListCards);
       setListCards(theListCards);
     } if (boardTypeObj.type === 'purchase card') {
       const thePurchaseCards = await getPurchaseCardsByBoardId(id);
+      sortResults(thePurchaseCards);
       setPurchaseCards(thePurchaseCards);
     }
   };

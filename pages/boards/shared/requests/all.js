@@ -1,34 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { useAuth } from '../../../../utils/context/authContext';
-import { getShareRequestsByUserId } from '../../../../api/shareRequestData';
-import { getUserByUid } from '../../../../api/userData';
+import React from 'react';
+import PropTypes from 'prop-types';
 import ShareRequestCard from '../../../../components/ShareRequestCard';
 
-function ShareRequests() {
-  const { user } = useAuth();
-  const [appUser, setAppUser] = useState([]);
-  const [shareRequests, setShareRequests] = useState([]);
-
-  const getUser = async () => {
-    const theUser = await getUserByUid(user.uid);
-    setAppUser(theUser);
-  };
-
-  const getRequests = async () => {
-    const theRequests = await getShareRequestsByUserId(appUser.id);
-    setShareRequests(theRequests);
-  };
-
-  useEffect(() => {
-    getUser();
-  }, [user]);
-
-  useEffect(() => {
-    if (appUser.id) {
-      getRequests();
-    }
-  }, [appUser]);
-
+function ShareRequests({ getRequests, shareRequests }) {
   return (
     <div>
       <h3 className="shareRequestsTitle">share requests</h3>
@@ -40,3 +14,8 @@ function ShareRequests() {
 }
 
 export default ShareRequests;
+
+ShareRequests.propTypes = {
+  getRequests: PropTypes.func.isRequired,
+  shareRequests: PropTypes.arrayOf({}).isRequired,
+};

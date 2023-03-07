@@ -36,7 +36,7 @@ export default function Profile() {
           <button className="profileButton" type="submit">{profile.id ? 'update' : 'create'} profile</button>
         </Link>
       </div>
-      <ProfileCard userObj={profile} />
+      <ProfileCard userObj={profile} onUpdate={getTheUser} />
     </div>
   );
 }
