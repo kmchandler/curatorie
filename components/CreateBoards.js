@@ -1,8 +1,13 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React, { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import Form from 'react-bootstrap/Form';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
 import { useAuth } from '../utils/context/authContext';
 import { createBoardType } from '../api/boardTypeData';
 import getTypes from '../api/typeData';
@@ -72,7 +77,7 @@ export default function CreateBoard({ obj }) {
   };
 
   const handleClickIcon = (e) => {
-    const newIconObj = icons.find((icon) => icon.id.toString() === e.target.value);
+    const newIconObj = icons.find((icon) => icon.name.toString() === e.target.value);
     setCheckedIcon(newIconObj);
     setFormInput({ ...formInput, icon: newIconObj.name });
   };
@@ -137,20 +142,19 @@ export default function CreateBoard({ obj }) {
           </Form.Group>
 
           <div className="iconsSelect">
-            {icons.map((icon) => (
-              <div key={icon.id} className="mb-3">
-                <Form.Check
-                  type="radio"
-                  id={`${icon.id}_iconRadio`}
-                  label={<IconRender iconName={icon.name} />}
-                  defaultChecked={checkedIcon.name === icon.toString()}
-                  value={icon.id}
-                  required
-                  onChange={handleClickIcon}
-                  name="icon"
-                />
-              </div>
-            ))}
+            <FormControl>
+              <RadioGroup
+                aria-labelledby="demo-radio-buttons-group-label"
+                defaultValue={checkedIcon}
+                name="radio-buttons-group"
+              >
+                {icons.map((icon) => (
+                  <div key={icon.id} className="mb-3">
+                    <FormControlLabel onChange={handleClickIcon} id={`${icon.id}_iconRadio`} value={icon.name} control={<Radio />} label={<IconRender iconName={icon.name} />} />
+                  </div>
+                ))}
+              </RadioGroup>
+            </FormControl>
           </div>
 
           <Button variant="primary" type="button" onClick={handleSubmitTwo}>
