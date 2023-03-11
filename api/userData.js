@@ -22,8 +22,8 @@ const getAllUsers = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const searchUsers = (input) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/search_users?query=${input}`)
+const searchUsers = (input, myUser) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/search_users?query=${input}&user_id=${myUser.id}`)
     .then((response) => {
       if (!response.ok) {
         throw new Error(response.message);

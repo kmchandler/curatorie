@@ -55,7 +55,7 @@ const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) 
     return (
       <>
         <NavBar shareRequests={shareRequests} navObj={profile} />
-        <div className="container"><Component {...pageProps} /></div>
+        <div className="container"><Component {...pageProps} myUser={profile} /></div>
       </>
     );
   }

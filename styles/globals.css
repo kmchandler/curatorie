@@ -602,3 +602,19 @@ body {
   display: flex;
   width: 140%;
 }
+
+.shareBoardSearchDiv {
+  display: flex;
+  justify-content: center;
+}
+
+.shareBoardsSearchBtn {
+  background-color: transparent;
+  border: solid;
+  border-radius: 4px;
+  border-width: 1px;
+}
+
+.shareBoardSearchBar {
+  display: flex;
+}
