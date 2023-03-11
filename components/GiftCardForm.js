@@ -1,7 +1,12 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import React, { useState, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
 import { createGiftCard, updateGiftCard } from '../api/giftCardData';
 
 const initialState = {
@@ -57,7 +62,7 @@ function GiftCardForm({ obj, user, boardItemId }) {
         <h2 className="updateCardHeader">{obj.id ? 'update' : 'add'} card</h2>
         <input required type="url" name="link" value={formInput.link} className="form-control" placeholder="link to item" onChange={handleChange} />
         <br />
-        <input required type="url" name="image_url" value={formInput.image_url} className="form-control" placeholder="image_url for item" onChange={handleChange} />
+        <input required type="url" name="image_url" value={formInput.image_url} className="form-control" placeholder="image url for item" onChange={handleChange} />
         <br />
         <input required type="text" name="item" value={formInput.item} className="form-control" placeholder="item name" onChange={handleChange} />
         <br />
@@ -69,24 +74,32 @@ function GiftCardForm({ obj, user, boardItemId }) {
         <br />
         <div>gift for:</div>
         <div key={`inline-${formInput.gift_for}`} className="mb-3">
-          <Form.Check
-            inline
-            label="myself"
-            name="formInput.gift_for"
-            type="radio"
-            value="myself"
-            id={`inline-${boardItemId}-1`}
-            onChange={handleChangeGift}
-          />
-          <Form.Check
-            inline
-            label="someone else"
-            name="formInput.gift_for"
-            type="radio"
-            id={`inline-${boardItemId}-2`}
-            value="someone_else"
-            onChange={handleChangeGift}
-          />
+          <FormControl>
+            <RadioGroup
+              aria-labelledby="demo-radio-buttons-group-label"
+              defaultValue={formInput.gift_for}
+              name="radio-buttons-group"
+            >
+              <FormControlLabel
+                inline
+                value="myself"
+                label="myself"
+                name="formInput.gift_for"
+                control={<Radio />}
+                id={`inline-${boardItemId}-1`}
+                onChange={handleChangeGift}
+              />
+              <FormControlLabel
+                inline
+                value="someone else"
+                name="formInput.gift_for"
+                label="someone else"
+                control={<Radio />}
+                id={`inline-${boardItemId}-2`}
+                onChange={handleChangeGift}
+              />
+            </RadioGroup>
+          </FormControl>
         </div>
         <input type="text" name="name" value={formInput.name} className="form-control" placeholder="name of person receiving/giving gift" onChange={handleChange} />
         <br />
