@@ -15,7 +15,7 @@ function BoardCard({
           <Link href={`/boards/${boardObj.id}`} passHref>
             <div className="cardDetails">
               <div className="boardIcon"><IconRender iconName={boardObj.icon} /></div>
-              <p className="boardCardType">{boardObj.name.toLowerCase()}</p>
+              <p className="boardCardName">{boardObj.name.toLowerCase()}</p>
             </div>
           </Link>
           <div className="boardCardBtns">
