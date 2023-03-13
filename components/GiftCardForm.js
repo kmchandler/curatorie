@@ -7,6 +7,8 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
+import Switch from '@mui/material/Switch';
+import { FormGroup } from '@mui/material';
 import { createGiftCard, updateGiftCard } from '../api/giftCardData';
 
 const initialState = {
@@ -94,7 +96,7 @@ function GiftCardForm({ obj, user, boardItemId }) {
                 value="someone else"
                 name="formInput.gift_for"
                 label="someone else"
-                control={<Radio />}
+                control={<Radio color="success" />}
                 id={`inline-${boardItemId}-2`}
                 onChange={handleChangeGift}
               />
@@ -103,20 +105,22 @@ function GiftCardForm({ obj, user, boardItemId }) {
         </div>
         <input type="text" name="name" value={formInput.name} className="form-control" placeholder="name of person receiving/giving gift" onChange={handleChange} />
         <br />
-        <Form.Check
-          type="switch"
-          label="favorite?"
-          name="priority"
-          id="giftPriority"
-          checked={formInput.priority}
-          onChange={(e) => setFormInput((prevState) => ({
-            ...prevState,
-            priority: e.target.checked,
-          }))}
-        />
+        <FormGroup>
+          <FormControlLabel
+            control={<Switch color="success" />}
+            label="favorite?"
+            name="priority"
+            id="giftPriority"
+            checked={formInput.priority}
+            onChange={(e) => setFormInput((prevState) => ({
+              ...prevState,
+              priority: e.target.checked,
+            }))}
+          />
+        </FormGroup>
         <br />
         <div className="submitProfileButtonDiv">
-          <button type="submit" className="submitProfileBtn" onSubmit={handleSubmit}>
+          <button type="submit" className="submitCardBtn" onSubmit={handleSubmit}>
             submit
           </button>
         </div>

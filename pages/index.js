@@ -34,7 +34,7 @@ function Home() {
       <button type="button" className="addBoardBtn" onClick={addBoard}>
         add board
       </button>
-      <div className="cardContainer">
+      <div className="cardContainer indexCards">
         {boards.map((board) => <BoardCard key={board.id} boardObj={board} onUpdate={getUserAndBoards} />)}
       </div>
     </div>

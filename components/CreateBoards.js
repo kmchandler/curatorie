@@ -136,28 +136,30 @@ export default function CreateBoard({ obj }) {
     return (
       <>
         <div className="addEditHeaderText">{obj.id ? 'update' : 'create'} board</div>
-        <Form>
+        <Form onSubmit={handleSubmitTwo}>
           <Form.Group className="mb-3" controlId="boardName">
             <Form.Control name="name" type="text" placeholder="board name" value={formInput.name} onChange={handleChange} required />
           </Form.Group>
 
           <div className="iconsSelect">
-            <FormControl>
+            <FormControl className="radioButtonsIconDiv">
               <RadioGroup
+                row
                 aria-labelledby="demo-radio-buttons-group-label"
                 defaultValue={checkedIcon}
                 name="radio-buttons-group"
+                className="radioButtonsIconStyle"
               >
                 {icons.map((icon) => (
-                  <div key={icon.id} className="mb-3">
-                    <FormControlLabel onChange={handleClickIcon} id={`${icon.id}_iconRadio`} value={icon.name} control={<Radio />} label={<IconRender iconName={icon.name} />} />
+                  <div key={icon.id} className="mb-3 iconDiv">
+                    <FormControlLabel onChange={handleClickIcon} id={`${icon.id}_iconRadio`} className="iconLabelStyle" value={icon.name} control={<Radio color="success" />} label={<IconRender iconName={icon.name} />} />
                   </div>
                 ))}
               </RadioGroup>
             </FormControl>
           </div>
 
-          <Button variant="primary" type="button" onClick={handleSubmitTwo}>
+          <Button variant="primary" type="submit" className="boardSubmitBtn">
             Submit
           </Button>
         </Form>

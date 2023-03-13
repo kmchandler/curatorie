@@ -9,50 +9,51 @@ import { RiBearSmileFill, RiSunFoggyLine } from 'react-icons/ri';
 import { GrBike } from 'react-icons/gr';
 import { GoChecklist } from 'react-icons/go';
 import { FaDog, FaBabyCarriage } from 'react-icons/fa';
-import { BsFillSuitHeartFill, BsPeopleFill, BsFillPersonFill } from 'react-icons/bs';
+import { BsPeopleFill, BsFillPersonFill } from 'react-icons/bs';
 import { CiPizza } from 'react-icons/ci';
+import { HiHeart } from 'react-icons/hi';
 
 export default function IconRender({ iconName }) {
   if (iconName === 'autumn') {
-    return <GiPumpkin />;
+    return <GiPumpkin className="iconSize" />;
   } if (iconName === 'barbell') {
-    return <TbBarbell />;
+    return <TbBarbell className="iconSize" />;
   } if (iconName === 'bear') {
-    return <RiBearSmileFill />;
+    return <RiBearSmileFill className="iconSize" />;
   } if (iconName === 'bike') {
-    return <GrBike />;
+    return <GrBike className="iconSize" />;
   } if (iconName === 'books') {
-    return <TbBooks />;
+    return <TbBooks className="iconSize" />;
   } if (iconName === 'cat') {
-    return <GiCat />;
+    return <GiCat className="iconSize" />;
   } if (iconName === 'checklist') {
-    return <GoChecklist />;
+    return <GoChecklist className="iconSize" />;
   } if (iconName === 'dog') {
-    return <FaDog />;
+    return <FaDog className="iconSize" />;
   } if (iconName === 'flowers') {
-    return <GiFlowerPot />;
+    return <GiFlowerPot className="iconSize" />;
   } if (iconName === 'heart') {
-    return <BsFillSuitHeartFill />;
+    return <HiHeart className="iconSize" />;
   } if (iconName === 'house') {
-    return <GiHouse />;
+    return <GiHouse className="iconSize" />;
   } if (iconName === 'makeup') {
-    return <GiLipstick />;
+    return <GiLipstick className="iconSize" />;
   } if (iconName === 'pacifier') {
-    return <FaBabyCarriage />;
+    return <FaBabyCarriage className="iconSize" />;
   } if (iconName === 'people') {
-    return <BsPeopleFill />;
+    return <BsPeopleFill className="iconSize" />;
   } if (iconName === 'person') {
-    return <BsFillPersonFill />;
+    return <BsFillPersonFill className="iconSize" />;
   } if (iconName === 'pizza') {
-    return <CiPizza />;
+    return <CiPizza className="iconSize" />;
   } if (iconName === 'present') {
-    return <TbBarbell />;
+    return <TbBarbell className="iconSize" />;
   } if (iconName === 'snowflake') {
-    return <TbSnowflake />;
+    return <TbSnowflake className="iconSize" />;
   } if (iconName === 'sun') {
-    return <RiSunFoggyLine />;
+    return <RiSunFoggyLine className="iconSize" />;
   } if (iconName === 'tree') {
-    return <TbChristmasTree />;
+    return <TbChristmasTree className="iconSize" />;
   }
   return null;
 }

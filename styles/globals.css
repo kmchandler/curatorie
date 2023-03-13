@@ -88,7 +88,12 @@ body {
 }
 
 .boardIcon {
-  font-size: 1000%;
+  font-size: 250%;
+  margin-top: 8%;
+}
+
+.boardCardName {
+  margin-bottom: -4%;
 }
 
 .boardCardBody {
@@ -617,4 +622,78 @@ body {
 
 .shareBoardSearchBar {
   display: flex;
+}
+
+.boardTypeButton {
+  background-color: transparent;
+  border: solid;
+  border-radius: 4px;
+  border-width: 1px;
+  font-size: x-large;
+}
+
+.radioButtonsIconDiv {
+  /* display: flex;
+  flex-wrap: wrap;
+  margin-top: 4%; */
+  width: 100%;
+}
+
+.radioButtonsIconStyle {
+  display: flex;
+  /* font-size: small; */
+  /* flex-wrap: wrap; */
+  flex-direction: row;
+  margin-top: 25px;
+}
+
+.radioButtonsIconStyle>* {
+  /* flex: 0 0 15%; */
+}
+
+.iconSize {
+  font-size: 500%;
+}
+
+.iconDiv {
+  display: flex;
+  flex-wrap: wrap;
+  max-height: 30%;
+  flex: 0 0 33.333333%;
+  padding: 25px 0 25px 0;
+  /* justify-content: center; */
+}
+
+.iconLabelStyle {
+  max-height: 60%;
+  margin: -10px;
+  margin-bottom: -40px;
+}
+
+.boardSubmitBtn {
+  background-color: transparent;
+  border: solid;
+  border-radius: 4px;
+  border-width: 1px;
+  color: black;
+}
+
+.addEditHeaderText {
+  margin-bottom: 2%;
+}
+
+.submitCardBtn{
+  background-color: transparent;
+  border: solid;
+  border-radius: 4px;
+  border-width: 1px;
+  color: black;
+}
+
+.indexCards{
+  margin-bottom: 50px;
+}
+
+.boardCardDiv {
+  margin-bottom: 30px !important;
 }
