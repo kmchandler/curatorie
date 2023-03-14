@@ -1,5 +1,7 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
+import Paper from '@mui/material/Paper';
 import { useRouter } from 'next/router';
 import { deleteSingleGiftCard } from '../api/giftCardData';
 
@@ -20,9 +22,9 @@ function GiftCard({ giftCardObj, boardItemId, onUpdate }) {
   };
 
   return (
-    <Card style={{ width: '18rem' }}>
+    <Paper elevation={2} className="giftCard cardBodyStyle">
       <a href={giftCardObj.link}>
-        <Card.Img className="cardImage" variant="top" src={giftCardObj.image_url} style={{ height: '300px' }} />
+        <Card.Img className="cardImage" variant="top" src={giftCardObj.image_url} />
       </a>
       <Card.Body className="giftCardBody">
         <div className="giftItem">{giftCardObj.item} {giftCardObj.priority ? '⭐' : null}</div>
@@ -39,7 +41,7 @@ function GiftCard({ giftCardObj, boardItemId, onUpdate }) {
           </button>
         </div>
       </Card.Body>
-    </Card>
+    </Paper>
   );
 }
 

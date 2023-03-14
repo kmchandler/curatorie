@@ -1,5 +1,7 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import Paper from '@mui/material/Paper';
 import Card from 'react-bootstrap/Card';
 import Link from 'next/link';
 import { getBoardById } from '../api/boardData';
@@ -22,7 +24,7 @@ function SharedBoardCard({
 
   return (
     <>
-      <Card className="sharedBoardCardDiv" style={{ width: '25%', margin: '10px', height: '10%' }}>
+      <Paper className="sharedBoardCardDiv boardCardDiv" elevation={2}>
         <Card.Body className="cardBody sharedBoardCardBody">
           <Link href={`/boards/${sharedBoard.id}`} passHref>
             <div className="cardDetails">
@@ -34,7 +36,7 @@ function SharedBoardCard({
             <SharedBoardButtonsModal boardObj={boardObj} onUpdate={onUpdate} />
           </div>
         </Card.Body>
-      </Card>
+      </Paper>
     </>
   );
 }
