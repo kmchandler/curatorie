@@ -71,7 +71,7 @@ function PurchaseCardForm({ obj, user, boardItemId }) {
         />
         <br />
         <div className="submitProfileButtonDiv">
-          <button type="submit" className="submitProfileBtn" onSubmit={handleSubmit}>
+          <button type="submit" className="submitCardBtn" onSubmit={handleSubmit}>
             submit
           </button>
         </div>
