@@ -28,7 +28,7 @@ function BoardButtonsModal({ boardObj, onUpdate }) {
 
   return (
     <>
-      <button className="custom-btn" type="button" onClick={handleShow}>
+      <button className="custom-btn modalDots" type="button" onClick={handleShow}>
         ...
       </button>
 

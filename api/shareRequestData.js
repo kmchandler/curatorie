@@ -14,8 +14,18 @@ const createShareRequest = (shareRequest) => new Promise((resolve, reject) => {
       'content-type': 'application/json',
     },
   })
-    .then((response) => resolve(response.json()))
-    .catch((error) => reject(error));
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+      return Promise.reject(response);
+    })
+    .then((response) => resolve(response))
+    .catch((error) => {
+      error.json().then((errJson) => {
+        reject(errJson.message);
+      });
+    });
 });
 
 const getShareRequestById = (id) => new Promise((resolve, reject) => {

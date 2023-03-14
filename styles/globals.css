@@ -84,12 +84,12 @@ body {
 .cardContainer {
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .boardIcon {
   font-size: 250%;
-  margin-top: 8%;
+  margin-top: 50px;
 }
 
 .boardCardName {
@@ -335,24 +335,26 @@ body {
 
 .shareRequestCardDiv {
   display: flex;
+  justify-content: center;
+  flex-direction: row wrap;
 }
 
 .shareRequestCardBody {
   align-content: center;
   justify-content: center;
-  margin: auto;
+  margin-top: -45px;
   text-align: center;
 }
 
 .sharedBoardCardBody {
   align-content: center;
   justify-content: center;
-  margin: auto;
+  margin-top: -45px;
   text-align: center;
 }
 
 .boardCardSentBy {
-  margin-bottom: 10px;
+  margin-bottom: 2px;
   margin-top: 10px;
 }
 
@@ -678,6 +680,30 @@ body {
   color: black;
 }
 
+.boardSubmitBtn:hover {
+  background-color: transparent;
+  border: solid;
+  border-radius: 4px;
+  border-width: 1px;
+  color: black;
+}
+
+.submitCardBtn {
+  background-color: transparent;
+  border: solid;
+  border-radius: 4px;
+  border-width: 1px;
+  color: black;
+}
+
+.submitProfileBtn {
+  background-color: transparent;
+  border: solid;
+  border-radius: 4px;
+  border-width: 1px;
+  color: black;
+}
+
 .addEditHeaderText {
   margin-bottom: 2%;
 }
@@ -696,4 +722,14 @@ body {
 
 .boardCardDiv {
   margin-bottom: 30px !important;
+  justify-content: center;
+}
+
+.boardCardDiv {
+  width: 320px;
+  height: 320px;
+}
+
+.modalDots {
+  margin-right: 15px;
 }

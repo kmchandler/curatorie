@@ -1,7 +1,9 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Link from 'next/link';
+import Paper from '@mui/material/Paper';
 import { useAuth } from '../utils/context/authContext';
 import { getBoardById } from '../api/boardData';
 import { createSharedBoard } from '../api/sharedBoardData';
@@ -60,7 +62,7 @@ function ShareRequestCard({
 
   return (
     <>
-      <Card className="boardCardDiv shareRequestCardDiv" style={{ width: '25%', margin: '10px', height: '10%' }}>
+      <Paper className="boardCardDiv shareRequestCardDiv" elevation={2}>
         <Card.Body className="cardBody shareRequestCardBody">
           <Link href={`/boards/${board.id}`} passHref>
             <div className="cardDetails">
@@ -78,7 +80,7 @@ function ShareRequestCard({
             </button>
           </div>
         </Card.Body>
-      </Card>
+      </Paper>
     </>
   );
 }
