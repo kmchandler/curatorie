@@ -724,7 +724,7 @@ body {
 .boardCardDiv {
   width: 320px;
   height: 320px;
-  margin-bottom: 30px !important;
+  margin: 15px;
   justify-content: center;
 }
 
@@ -751,4 +751,12 @@ body {
 
 .giftCard {
   height: 610px;
+}
+
+.purchaseCard {
+  height: 475px;
+}
+
+.listCardDiv {
+  height: 76px;
 }
