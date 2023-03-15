@@ -1,64 +1,31 @@
-import { clientCredentials } from '../utils/client';
+import {
+  get, remove, create,
+} from './base';
 
-const dbUrl = clientCredentials.databaseURL;
+const createBoardType = async (boardType) => {
+  const response = await create('/board_types', JSON.stringify(boardType));
+  return response;
+};
 
-const createBoardType = (boardType) => new Promise((resolve, reject) => {
-  const boardTypeObj = {
-    type: boardType.type,
-    board_id: boardType.board_id,
-  };
-  fetch(`${dbUrl}/board_types`, {
-    method: 'POST',
-    body: JSON.stringify(boardTypeObj),
-    headers: {
-      'content-type': 'application/json',
-    },
-  })
-    .then((response) => resolve(response.json()))
-    .catch((error) => reject(error));
-});
+const getBoardTypeById = async (id) => {
+  const response = await get(`board_types/${id}`);
+  return response;
+};
 
-const getBoardTypeById = (id) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/board_types/${id}`)
-    .then((response) => response.json())
-    .then((data) => {
-      resolve({
-        id: data.id,
-        type: data.type,
-        board_id: data.board_id,
-      });
-    })
-    .catch((error) => reject(error));
-});
+const getBoardTypeByBoardId = async (boardId) => {
+  const response = await get(`/board_types?board_id=${boardId}`);
+  return response;
+};
 
-const getBoardTypeByBoardId = (boardId) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/board_types?board_id=${boardId}`)
-    .then((response) => response.json())
-    .then((response) => {
-      if (response) {
-        resolve(response);
-      } else {
-        resolve([]);
-      }
-    })
-    .catch((error) => reject(error));
-});
+const getBoardTypes = async () => {
+  const response = await get('/board_types');
+  return response;
+};
 
-const getBoardTypes = () => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/board_types`)
-    .then((response) => response.json())
-    .then(resolve)
-    .catch(reject);
-});
-
-const deleteSingleBoardType = (id) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/board_types/${id}`, {
-    method: 'DELETE',
-    headers: { 'Content-Type': 'application/json' },
-  })
-    .then((response) => resolve(response))
-    .catch((error) => reject(error));
-});
+const deleteSingleBoardType = async (id) => {
+  const response = await remove(`/board_types/${id}`);
+  return response;
+};
 
 export {
   createBoardType,

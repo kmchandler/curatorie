@@ -1,64 +1,31 @@
-import { clientCredentials } from '../utils/client';
+import {
+  get, remove, create,
+} from './base';
 
-const dbUrl = clientCredentials.databaseURL;
+const createSharedBoard = async (sharedBoard) => {
+  const response = await create('/shared_boards', JSON.stringify(sharedBoard));
+  return response;
+};
 
-const createSharedBoard = (sharedBoard) => new Promise((resolve, reject) => {
-  const sharedBoardObj = {
-    user_id: sharedBoard.user_id,
-    board_id: sharedBoard.board_id,
-  };
-  fetch(`${dbUrl}/shared_boards`, {
-    method: 'POST',
-    body: JSON.stringify(sharedBoardObj),
-    headers: {
-      'content-type': 'application/json',
-    },
-  })
-    .then((response) => resolve(response.json()))
-    .catch((error) => reject(error));
-});
+const getSharedBoardById = async (id) => {
+  const response = await get(`/shared_boards/${id}`);
+  return response;
+};
 
-const getSharedBoardById = (id) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/shared_boards/${id}`)
-    .then((response) => response.json())
-    .then((data) => {
-      resolve({
-        id: data.id,
-        user_id: data.user_id,
-        board_id: data.board_id,
-      });
-    })
-    .catch((error) => reject(error));
-});
+const getSharedBoardsByUserId = async (userId) => {
+  const response = await get(`/shared_boards?user_id=${userId}`);
+  return response;
+};
 
-const getSharedBoardsByUserId = (userId) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/shared_boards?user_id=${userId}`)
-    .then((response) => response.json())
-    .then((response) => {
-      if (response) {
-        resolve(response);
-      } else {
-        resolve([]);
-      }
-    })
-    .catch((error) => reject(error));
-});
+const getSharedBoards = async () => {
+  const response = await get('/shared_boards');
+  return response;
+};
 
-const getSharedBoards = () => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/shared_boards`)
-    .then((response) => response.json())
-    .then(resolve)
-    .catch(reject);
-});
-
-const deleteSingleSharedBoard = (id) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/shared_boards/${id}`, {
-    method: 'DELETE',
-    headers: { 'Content-Type': 'application/json' },
-  })
-    .then((response) => resolve(response))
-    .catch((error) => reject(error));
-});
+const deleteSingleSharedBoard = async (id) => {
+  const response = await remove(`/shared_boards/${id}`);
+  return response;
+};
 
 export {
   createSharedBoard,

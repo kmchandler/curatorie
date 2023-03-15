@@ -1,12 +1,8 @@
-import { clientCredentials } from '../utils/client';
+import { get } from './base';
 
-const dbUrl = clientCredentials.databaseURL;
-
-const getTypes = () => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/types`)
-    .then((response) => response.json())
-    .then(resolve)
-    .catch(reject);
-});
+const getTypes = async () => {
+  const response = await get('/types');
+  return response;
+};
 
 export default getTypes;
