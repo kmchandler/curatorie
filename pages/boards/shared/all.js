@@ -38,7 +38,7 @@ function SharedBoards() {
           <button type="button" className="requestsButton">requests</button>
         </Link>
       </div>
-      <div className="d-flex flex-wrap cardContainer boardCardDiv">
+      <div className="d-flex flex-wrap cardContainer sharedBoardCardsDiv">
         {sharedBoards.map((sb) => <SharedBoardCard key={sb.id} boardObj={sb} onUpdate={getBoards} />)}
       </div>
     </div>

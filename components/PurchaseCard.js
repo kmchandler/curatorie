@@ -1,5 +1,7 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
+import Paper from '@mui/material/Paper';
 import { useRouter } from 'next/router';
 import { deleteSinglePurchaseCard } from '../api/purchaseCardData';
 
@@ -19,7 +21,7 @@ function PurchaseCard({ purchaseCardObj, boardItemId, onUpdate }) {
     });
   };
   return (
-    <Card style={{ width: '18rem' }}>
+    <Paper className="purchaseCard cardBodyStyle">
       <a href={purchaseCardObj.link}>
         <Card.Img className="cardImage" variant="top" src={purchaseCardObj.image_url} style={{ height: '300px' }} />
       </a>
@@ -35,7 +37,7 @@ function PurchaseCard({ purchaseCardObj, boardItemId, onUpdate }) {
           </button>
         </div>
       </Card.Body>
-    </Card>
+    </Paper>
   );
 }
 

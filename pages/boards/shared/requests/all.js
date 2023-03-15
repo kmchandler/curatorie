@@ -6,7 +6,7 @@ function ShareRequests({ getRequests, shareRequests }) {
   return (
     <div>
       <h3 className="shareRequestsTitle">share requests</h3>
-      <div className="d-flex flex-wrap cardContainer boardCardDiv">
+      <div className="d-flex flex-wrap shareRequestsCardDiv">
         {shareRequests.map((sr) => <ShareRequestCard key={sr.id} boardObj={sr} onUpdate={getRequests} />)}
       </div>
     </div>

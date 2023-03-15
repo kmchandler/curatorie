@@ -1,5 +1,7 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
+import Paper from '@mui/material/Paper';
 import { useRouter } from 'next/router';
 import { deleteSingleInspoCard } from '../api/inspoCardData';
 
@@ -20,7 +22,7 @@ function InspoCard({ inspoCardObj, boardItemId, onUpdate }) {
   };
 
   return (
-    <Card style={{ width: '18rem' }}>
+    <Paper className="cardBodyStyle inspoCard" elements={2}>
       <Card.Img className="cardImage" variant="top" src={inspoCardObj.image_url} style={{ height: '300px' }} />
       <Card.Body className="inspoCardBody">
         <div className="inspoDescription">{inspoCardObj.description} {inspoCardObj.priority ? '⭐' : null}</div>
@@ -31,7 +33,7 @@ function InspoCard({ inspoCardObj, boardItemId, onUpdate }) {
           </button>
         </div>
       </Card.Body>
-    </Card>
+    </Paper>
   );
 }
 

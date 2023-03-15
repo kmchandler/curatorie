@@ -1,5 +1,7 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
+import Paper from '@mui/material/Paper';
 import { useRouter } from 'next/router';
 import { deleteSingleListCard } from '../api/listCardData';
 
@@ -20,7 +22,7 @@ function ListCard({ listCardObj, boardItemId, onUpdate }) {
   };
 
   return (
-    <Card className="listCardDiv" style={{ width: '18rem' }}>
+    <Paper className="listCardDiv cardBodyStyle" elevation={2}>
       <Card.Body className="listCardBody">
         <div>{listCardObj.list_item} {listCardObj.priority ? '⭐' : null}</div>
         <div className="listCardBtns">
@@ -30,7 +32,7 @@ function ListCard({ listCardObj, boardItemId, onUpdate }) {
           </button>
         </div>
       </Card.Body>
-    </Card>
+    </Paper>
   );
 }
 

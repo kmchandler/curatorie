@@ -164,7 +164,7 @@ body {
 }
 
 .inspoCardBody {
-  margin-top: 5px;
+  margin-top: 15px;
   margin-left: 25px;
   margin-right: 25px;
   text-align: center;
@@ -349,7 +349,7 @@ body {
 .sharedBoardCardBody {
   align-content: center;
   justify-content: center;
-  margin-top: -45px;
+  margin-top: -25px;
   text-align: center;
 }
 
@@ -607,7 +607,8 @@ body {
 
 .sharedBoardCardButtons {
   display: flex;
-  width: 140%;
+  margin-right: 8px;
+  margin-top: 9px;
 }
 
 .shareBoardSearchDiv {
@@ -721,15 +722,41 @@ body {
 }
 
 .boardCardDiv {
-  margin-bottom: 30px !important;
-  justify-content: center;
-}
-
-.boardCardDiv {
   width: 320px;
   height: 320px;
+  margin: 15px;
+  justify-content: center;
 }
 
 .modalDots {
   margin-right: 15px;
+}
+
+.sharedBoardCardsDiv {
+  justify-content: center !important;
+}
+
+.shareRequestsCardDiv {
+  justify-content: center !important;
+}
+
+.cardBodyStyle {
+  width: 350px;
+  margin: 20px;
+}
+
+.inspoCard {
+  height: 400px;
+}
+
+.giftCard {
+  height: 610px;
+}
+
+.purchaseCard {
+  height: 475px;
+}
+
+.listCardDiv {
+  height: 76px;
 }
