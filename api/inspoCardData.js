@@ -1,87 +1,37 @@
-import { clientCredentials } from '../utils/client';
+import {
+  get, remove, edit, create,
+} from './base';
 
-const dbUrl = clientCredentials.databaseURL;
+const createInspoCard = async (inspoCard) => {
+  const response = await create('/inspo_cards', JSON.stringify(inspoCard));
+  return response;
+};
 
-const createInspoCard = (inspoCard) => new Promise((resolve, reject) => {
-  const inspoCardObj = {
-    board_id: inspoCard.board_id,
-    user_id: inspoCard.user_id,
-    image_url: inspoCard.image_url,
-    description: inspoCard.description,
-    priority: inspoCard.priority,
-  };
-  fetch(`${dbUrl}/inspo_cards`, {
-    method: 'POST',
-    body: JSON.stringify(inspoCardObj),
-    headers: {
-      'content-type': 'application/json',
-    },
-  })
-    .then((response) => resolve(response.json()))
-    .catch((error) => reject(error));
-});
+const getInspoCards = async () => {
+  const response = await get('/inspo_cards');
+  return response;
+};
 
-const getInspoCards = () => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/inspo_cards`)
-    .then((response) => response.json())
-    .then(resolve)
-    .catch(reject);
-});
+const getInspoCardById = async (id) => {
+  const response = await get(`/inspo_cards/${id}`);
+  return response;
+};
 
-const getInspoCardById = (id) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/inspo_cards/${id}`)
-    .then((response) => response.json())
-    .then((data) => {
-      resolve({
-        id: data.id,
-        board_id: data.board_id,
-        user_id: data.user_id,
-        image_url: data.image_url,
-        description: data.description,
-        priority: data.priority,
-      });
-    })
-    .catch((error) => reject(error));
-});
+const getInspoCardsByBoardId = async (boardId) => {
+  const response = get(`/inspo_cards?board_id=${boardId}`);
+  return response;
+};
 
-const getInspoCardsByBoardId = (boardId) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/inspo_cards?board_id=${boardId}`)
-    .then((response) => response.json())
-    .then((response) => {
-      if (response) {
-        resolve(response);
-      } else {
-        resolve([]);
-      }
-    })
-    .catch((error) => reject(error));
-});
+const deleteSingleInspoCard = async (id) => {
+  const response = await remove(`/inspo_cards/${id}`);
+  return response;
+};
 
-const deleteSingleInspoCard = (id) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/inspo_cards/${id}`, {
-    method: 'DELETE',
-    headers: { 'Content-Type': 'application/json' },
-  })
-    .then((response) => resolve(response))
-    .catch((error) => reject(error));
-});
+const updateInspoCard = async (inspoCard) => {
+  const response = await edit(`/inspo_cards/${inspoCard.id}`, JSON.stringify(inspoCard));
+  return response;
+};
 
-const updateInspoCard = (inspoCard) => new Promise((resolve, reject) => {
-  const inspoCardObj = {
-    board_id: inspoCard.board_id,
-    user_id: inspoCard.user_id,
-    image_url: inspoCard.image_url,
-    description: inspoCard.description,
-    priority: inspoCard.priority,
-  };
-  fetch(`${dbUrl}/inspo_cards/${inspoCard.id}`, {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(inspoCardObj),
-  })
-    .then((response) => resolve(response))
-    .catch((error) => reject(error));
-});
 export {
   createInspoCard,
   getInspoCards,

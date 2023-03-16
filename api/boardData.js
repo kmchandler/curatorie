@@ -1,75 +1,36 @@
-import { clientCredentials } from '../utils/client';
+import {
+  get, remove, edit, create,
+} from './base';
 
-const dbUrl = clientCredentials.databaseURL;
-
-const createBoard = (board) => new Promise((resolve, reject) => {
+const createBoard = async (board) => {
   const boardObj = {
     user_id: board.user_id,
     name: board.name,
     icon: board.icon,
   };
-  fetch(`${dbUrl}/boards`, {
-    method: 'POST',
-    body: JSON.stringify(boardObj),
-    headers: {
-      'content-type': 'application/json',
-    },
-  })
-    .then((response) => resolve(response.json()))
-    .catch((error) => reject(error));
-});
+  return create('/boards', JSON.stringify(boardObj));
+};
 
-const getBoardById = (id) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/boards/${id}`)
-    .then((response) => response.json())
-    .then((data) => {
-      resolve({
-        id: data.id,
-        user_id: data.user_id,
-        name: data.name,
-        icon: data.icon,
-      });
-    })
-    .catch((error) => reject(error));
-});
+const getBoardById = async (id) => {
+  const response = await get(`/boards/${id}`);
+  return response;
+};
 
-const getBoardsByUserId = (userId) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/boards?user_id=${userId}`)
-    .then((response) => response.json())
-    .then((response) => {
-      if (response) {
-        resolve(response);
-      } else {
-        resolve([]);
-      }
-    })
-    .catch((error) => reject(error));
-});
+const getBoardsByUserId = async (userId) => {
+  const response = await get(`/boards?user_id=${userId}`);
+  return response;
+};
 
-const deleteSingleBoard = (id) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/boards/${id}`, {
-    method: 'DELETE',
-    headers: { 'Content-Type': 'application/json' },
-  })
-    .then((response) => resolve(response))
-    .catch((error) => reject(error));
-});
+const deleteSingleBoard = async (id) => {
+  const response = await remove(`/boards/${id}`);
+  return response;
+};
 
-const updateBoard = (board) => new Promise((resolve, reject) => {
-  const boardObj = {
-    id: board.id,
-    user_id: board.user_id,
-    name: board.name,
-    icon: board.icon,
-  };
-  fetch(`${dbUrl}/boards/${board.id}`, {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(boardObj),
-  })
-    .then((response) => resolve(response))
-    .catch((error) => reject(error));
-});
+const updateBoard = async (board) => {
+  const response = await edit(`/boards/${board.id}`, JSON.stringify(board));
+  return response;
+};
+
 export {
   createBoard,
   deleteSingleBoard,

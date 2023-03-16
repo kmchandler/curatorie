@@ -1,12 +1,8 @@
-import { clientCredentials } from '../utils/client';
+import { get } from './base';
 
-const dbUrl = clientCredentials.databaseURL;
-
-const getIcons = () => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/icons`)
-    .then((response) => response.json())
-    .then(resolve)
-    .catch(reject);
-});
+const getIcons = async () => {
+  const response = await get('/icons');
+  return response;
+};
 
 export default getIcons;

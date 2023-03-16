@@ -1,105 +1,37 @@
-import { clientCredentials } from '../utils/client';
+import {
+  get, remove, edit, create,
+} from './base';
 
-const dbUrl = clientCredentials.databaseURL;
+const createGiftCard = async (giftCard) => {
+  const response = await create('/gift_cards', JSON.stringify(giftCard));
+  return response;
+};
 
-const createGiftCard = (giftCard) => new Promise((resolve, reject) => {
-  const giftCardObj = {
-    board_id: giftCard.board_id,
-    user_id: giftCard.user_id,
-    link: giftCard.link,
-    image_url: giftCard.image_url,
-    item: giftCard.item,
-    description: giftCard.description,
-    price: giftCard.price,
-    occasion: giftCard.occasion,
-    gift_for: giftCard.gift_for,
-    name: giftCard.name,
-    priority: giftCard.priority,
-  };
-  fetch(`${dbUrl}/gift_cards`, {
-    method: 'POST',
-    body: JSON.stringify(giftCardObj),
-    headers: {
-      'content-type': 'application/json',
-    },
-  })
-    .then((response) => resolve(response.json()))
-    .catch((error) => reject(error));
-});
+const getGiftCards = async () => {
+  const response = await get('/gift_cards');
+  return response;
+};
 
-const getGiftCards = () => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/gift_cards`)
-    .then((response) => response.json())
-    .then(resolve)
-    .catch(reject);
-});
+const getGiftCardById = async (id) => {
+  const response = get(`/gift_cards/${id}`);
+  return response;
+};
 
-const getGiftCardById = (id) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/gift_cards/${id}`)
-    .then((response) => response.json())
-    .then((data) => {
-      resolve({
-        id: data.id,
-        board_id: data.board_id,
-        user_id: data.user_id,
-        link: data.link,
-        image_url: data.image_url,
-        item: data.item,
-        description: data.description,
-        price: data.price,
-        occasion: data.occasion,
-        gift_for: data.gift_for,
-        name: data.name,
-        priority: data.priority,
-      });
-    })
-    .catch((error) => reject(error));
-});
+const getGiftCardsByBoardId = async (boardId) => {
+  const response = await get(`/gift_cards?board_id=${boardId}`);
+  return response;
+};
 
-const getGiftCardsByBoardId = (boardId) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/gift_cards?board_id=${boardId}`)
-    .then((response) => response.json())
-    .then((response) => {
-      if (response) {
-        resolve(response);
-      } else {
-        resolve([]);
-      }
-    })
-    .catch((error) => reject(error));
-});
+const deleteSingleGiftCard = async (id) => {
+  const response = await remove(`/gift_cards/${id}`);
+  return response;
+};
 
-const deleteSingleGiftCard = (id) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/gift_cards/${id}`, {
-    method: 'DELETE',
-    headers: { 'Content-Type': 'application/json' },
-  })
-    .then((response) => resolve(response))
-    .catch((error) => reject(error));
-});
+const updateGiftCard = async (giftCard) => {
+  const response = await edit(`/gift_cards/${giftCard.id}`, JSON.stringify(giftCard));
+  return response;
+};
 
-const updateGiftCard = (giftCard) => new Promise((resolve, reject) => {
-  const giftCardObj = {
-    board_id: giftCard.board_id,
-    user_id: giftCard.user_id,
-    link: giftCard.link,
-    image_url: giftCard.image_url,
-    item: giftCard.item,
-    description: giftCard.description,
-    price: giftCard.price,
-    occasion: giftCard.occasion,
-    gift_for: giftCard.gift_for,
-    name: giftCard.name,
-    priority: giftCard.priority,
-  };
-  fetch(`${dbUrl}/gift_cards/${giftCard.id}`, {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(giftCardObj),
-  })
-    .then((response) => resolve(response))
-    .catch((error) => reject(error));
-});
 export {
   createGiftCard,
   getGiftCards,

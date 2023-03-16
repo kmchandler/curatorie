@@ -1,74 +1,35 @@
-import { clientCredentials } from '../utils/client';
+import {
+  get, remove, create,
+} from './base';
 
-const dbUrl = clientCredentials.databaseURL;
+const createShareRequest = async (shareRequest) => {
+  try {
+    const response = await create('/share_requests', JSON.stringify(shareRequest));
+    return response;
+  } catch (error) {
+    return Promise.reject(error.message);
+  }
+};
 
-const createShareRequest = (shareRequest) => new Promise((resolve, reject) => {
-  const shareRequestObj = {
-    user_id: shareRequest.user_id,
-    board_id: shareRequest.board_id,
-  };
-  fetch(`${dbUrl}/share_requests`, {
-    method: 'POST',
-    body: JSON.stringify(shareRequestObj),
-    headers: {
-      'content-type': 'application/json',
-    },
-  })
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      }
-      return Promise.reject(response);
-    })
-    .then((response) => resolve(response))
-    .catch((error) => {
-      error.json().then((errJson) => {
-        reject(errJson.message);
-      });
-    });
-});
+const getShareRequestById = async (id) => {
+  const response = await get(`/share_requests/${id}`);
+  return response;
+};
 
-const getShareRequestById = (id) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/share_requests/${id}`)
-    .then((response) => response.json())
-    .then((data) => {
-      resolve({
-        id: data.id,
-        user_id: data.user_id,
-        board_id: data.board_id,
-      });
-    })
-    .catch((error) => reject(error));
-});
+const getShareRequestsByUserId = async (userId) => {
+  const response = await get(`/share_requests?user_id=${userId}`);
+  return response;
+};
 
-const getShareRequestsByUserId = (userId) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/share_requests?user_id=${userId}`)
-    .then((response) => response.json())
-    .then((response) => {
-      if (response) {
-        resolve(response);
-      } else {
-        resolve([]);
-      }
-    })
-    .catch((error) => reject(error));
-});
+const getShareRequests = async () => {
+  const response = get('/share_requests');
+  return response;
+};
 
-const getShareRequests = () => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/share_requests`)
-    .then((response) => response.json())
-    .then(resolve)
-    .catch(reject);
-});
-
-const deleteSingleShareRequest = (id) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/share_requests/${id}`, {
-    method: 'DELETE',
-    headers: { 'Content-Type': 'application/json' },
-  })
-    .then((response) => resolve(response))
-    .catch((error) => reject(error));
-});
+const deleteSingleShareRequest = async (id) => {
+  const response = await remove(`/share_requests/${id}`);
+  return response;
+};
 
 export {
   createShareRequest,

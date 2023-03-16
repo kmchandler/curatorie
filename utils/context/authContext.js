@@ -26,15 +26,18 @@ const AuthProvider = (props) => {
   useEffect(() => {
     firebase.auth().onAuthStateChanged((fbUser) => {
       if (fbUser) {
-        setOAuthUser(fbUser);
-        checkUser(fbUser.uid).then((userInfo) => {
-          let userObj = {};
-          if ('null' in userInfo) {
-            userObj = userInfo;
-          } else {
-            userObj = { fbUser, uid: fbUser.uid, ...userInfo };
-          }
-          setUser(userObj);
+        fbUser.getIdToken().then((token) => {
+          window.fbIdToken = token;
+          setOAuthUser(fbUser);
+          checkUser(fbUser.uid).then((userInfo) => {
+            let userObj = {};
+            if ('null' in userInfo) {
+              userObj = userInfo;
+            } else {
+              userObj = { fbUser, uid: fbUser.uid, ...userInfo };
+            }
+            setUser(userObj);
+          });
         });
       } else {
         setOAuthUser(false);

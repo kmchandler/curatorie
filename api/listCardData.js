@@ -1,84 +1,37 @@
-import { clientCredentials } from '../utils/client';
+import {
+  get, remove, edit, create,
+} from './base';
 
-const dbUrl = clientCredentials.databaseURL;
+const createListCard = async (listCard) => {
+  const response = await create('/list_cards', JSON.stringify(listCard));
+  return response;
+};
 
-const createListCard = (listCard) => new Promise((resolve, reject) => {
-  const listCardObj = {
-    board_id: listCard.board_id,
-    user_id: listCard.user_id,
-    list_item: listCard.list_item,
-    priority: listCard.priority,
-  };
-  fetch(`${dbUrl}/list_cards`, {
-    method: 'POST',
-    body: JSON.stringify(listCardObj),
-    headers: {
-      'content-type': 'application/json',
-    },
-  })
-    .then((response) => resolve(response.json()))
-    .catch((error) => reject(error));
-});
+const getListCards = async () => {
+  const response = await get('/list_cards');
+  return response;
+};
 
-const getListCards = () => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/list_cards`)
-    .then((response) => response.json())
-    .then(resolve)
-    .catch(reject);
-});
+const getListCardById = async (id) => {
+  const response = await get(`/list_cards/${id}`);
+  return response;
+};
 
-const getListCardById = (id) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/list_cards/${id}`)
-    .then((response) => response.json())
-    .then((data) => {
-      resolve({
-        id: data.id,
-        board_id: data.board_id,
-        user_id: data.user_id,
-        list_item: data.list_item,
-        priority: data.priority,
-      });
-    })
-    .catch((error) => reject(error));
-});
+const getListCardsByBoardId = async (boardId) => {
+  const response = await get(`/list_cards?board_id=${boardId}`);
+  return response;
+};
 
-const getListCardsByBoardId = (boardId) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/list_cards?board_id=${boardId}`)
-    .then((response) => response.json())
-    .then((response) => {
-      if (response) {
-        resolve(response);
-      } else {
-        resolve([]);
-      }
-    })
-    .catch((error) => reject(error));
-});
+const deleteSingleListCard = async (id) => {
+  const response = await remove(`/list_cards/${id}`);
+  return response;
+};
 
-const deleteSingleListCard = (id) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/list_cards/${id}`, {
-    method: 'DELETE',
-    headers: { 'Content-Type': 'application/json' },
-  })
-    .then((response) => resolve(response))
-    .catch((error) => reject(error));
-});
+const updateListCard = async (listCard) => {
+  const response = await edit(`/list_cards/${listCard.id}`, JSON.stringify(listCard));
+  return response;
+};
 
-const updateListCard = (listCard) => new Promise((resolve, reject) => {
-  const listCardObj = {
-    board_id: listCard.board_id,
-    user_id: listCard.user_id,
-    list_item: listCard.list_item,
-    priority: listCard.priority,
-  };
-  fetch(`${dbUrl}/list_cards/${listCard.id}`, {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(listCardObj),
-  })
-    .then((response) => resolve(response))
-    .catch((error) => reject(error));
-});
 export {
   createListCard,
   getListCards,
