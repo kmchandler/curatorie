@@ -9,6 +9,7 @@ export const create = async (path, body) => {
     body,
     headers: {
       'content-type': 'application/json',
+      authorization: `Bearer ${window.fbIdToken}`,
     },
   });
   const responseJson = await response.json();
@@ -21,7 +22,9 @@ export const create = async (path, body) => {
 export const get = async (path) => {
   const response = await fetch(`${dbUrl}${path}`, {
     method: 'GET',
-    headers: {},
+    headers: {
+      authorization: `Bearer ${window.fbIdToken}`,
+    },
   });
   if (response.ok) {
     return response.json();
@@ -32,7 +35,10 @@ export const get = async (path) => {
 export const remove = async (path) => {
   const response = await fetch(`${dbUrl}${path}`, {
     method: 'DELETE',
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${window.fbIdToken}`,
+    },
   });
   if (response.ok) {
     return response;
@@ -46,6 +52,7 @@ export const edit = async (path, body) => {
     body,
     headers: {
       'content-type': 'application/json',
+      authorization: `Bearer ${window.fbIdToken}`,
     },
   });
   if (response.ok) {
