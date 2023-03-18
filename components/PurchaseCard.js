@@ -25,13 +25,13 @@ function PurchaseCard({ purchaseCardObj, boardItemId, onUpdate }) {
   return (
     <Paper className="purchaseCard cardBodyStyle">
       <a href={purchaseCardObj.link}>
-        <Card.Img className="cardImage" variant="top" src={purchaseCardObj.image_url} style={{ height: '300px' }} />
+        <Card.Img className="cardImage" variant="top" src={purchaseCardObj.image_url} />
       </a>
       <Card.Body className="purchaseCardBody">
-        <div className="purchaseItem">{purchaseCardObj.item} {purchaseCardObj.priority ? '⭐' : null}</div>
+        <div className="purchaseItem">{purchaseCardObj.item.toLowerCase()} {purchaseCardObj.priority ? '⭐' : null}</div>
         <hr />
-        <Tooltip title={purchaseCardObj.description} placement="top">
-          <div className="purchaseDescription">{purchaseCardObj.description}</div>
+        <Tooltip title={purchaseCardObj.description.toLowerCase()} placement="top">
+          <div className="purchaseDescription">{purchaseCardObj.description.toLowerCase()}</div>
         </Tooltip>
         <div className="purchasePrice">${purchaseCardObj.price}</div>
         <div className="purchaseCardBtns">

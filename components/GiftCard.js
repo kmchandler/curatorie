@@ -29,15 +29,15 @@ function GiftCard({ giftCardObj, boardItemId, onUpdate }) {
         <Card.Img className="cardImage giftCardImage" variant="top" src={giftCardObj.image_url} />
       </a>
       <Card.Body className="giftCardBody">
-        <div className="giftItem">{giftCardObj.item} {giftCardObj.priority ? '⭐' : null}</div>
+        <div className="giftItem">{giftCardObj.item.toLowerCase()} {giftCardObj.priority ? '⭐' : null}</div>
         <hr />
-        <Tooltip title={giftCardObj.description} placement="top">
-          <div className="giftDescription">{giftCardObj.description}</div>
+        <Tooltip title={giftCardObj.description.toLowerCase()} placement="top">
+          <div className="giftDescription">{giftCardObj.description.toLowerCase()}</div>
         </Tooltip>
         <div className="giftPrice">${giftCardObj.price}</div>
-        <div className="giftOccasion">occasion: {giftCardObj.occasion}</div>
-        <div className="giftFor">{giftCardObj.gift_for === 'someone_else' ? null : 'for: me'}</div>
-        <div className="giftName">{giftCardObj.gift_for === 'someone_else' ? 'for:' : 'from:'} {giftCardObj.name}</div>
+        <div className="giftOccasion">occasion: {giftCardObj.occasion.toLowerCase()}</div>
+        <div className="giftFor">{giftCardObj.gift_for === 'someone else' ? null : 'for: me'}</div>
+        <div className="giftName">{giftCardObj.gift_for === 'someone else' ? 'for:' : 'from:'} {giftCardObj.name.toLowerCase()}</div>
         <div className="giftCardBtns">
           <button type="button" className="editGiftButton" onClick={editGiftCard}>edit</button>
           <button type="button" className="deleteGiftButton m-2" onClick={deleteThisCard}>
