@@ -2,9 +2,9 @@
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Paper from '@mui/material/Paper';
-import Tooltip from '@mui/material/Tooltip';
 import { useRouter } from 'next/router';
 import { deleteSingleGiftCard } from '../api/giftCardData';
+import OverflowTooltip from './OverflowTooltip';
 
 function GiftCard({ giftCardObj, boardItemId, onUpdate }) {
   const router = useRouter();
@@ -30,9 +30,9 @@ function GiftCard({ giftCardObj, boardItemId, onUpdate }) {
       <Card.Body className="giftCardBody">
         <div className="giftItem">{giftCardObj.item} {giftCardObj.priority ? '⭐' : null}</div>
         <hr />
-        <Tooltip title={giftCardObj.description} placement="top">
+        <OverflowTooltip title={giftCardObj.description} placement="top">
           <div className="giftDescription">{giftCardObj.description}</div>
-        </Tooltip>
+        </OverflowTooltip>
         <div className="giftPrice">${giftCardObj.price}</div>
         <div className="giftOccasion">occasion: {giftCardObj.occasion}</div>
         <div className="giftFor">{giftCardObj.gift_for === 'someone_else' ? null : 'for: me'}</div>
