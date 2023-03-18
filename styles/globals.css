@@ -178,6 +178,7 @@ body {
 .listCardDiv {
   margin-top: 25px;
   text-align: center;
+  height: 85px;
 }
 
 .listCardBody {
@@ -762,10 +763,6 @@ body {
 
 .purchaseCard {
   height: 475px;
-}
-
-.listCardDiv {
-  height: 76px;
 }
 
 .inspoDescription {
