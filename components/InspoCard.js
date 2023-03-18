@@ -27,8 +27,8 @@ function InspoCard({ inspoCardObj, boardItemId, onUpdate }) {
     <Paper className="cardBodyStyle inspoCard" elements={2}>
       <Card.Img className="cardImage" variant="top" src={inspoCardObj.image_url} style={{ height: '300px' }} />
       <Card.Body className="inspoCardBody">
-        <Tooltip title={inspoCardObj.description} placement="top">
-          <div className="inspoDescription">{inspoCardObj.description} {inspoCardObj.priority ? '⭐' : null}</div>
+        <Tooltip title={inspoCardObj.description.toLowerCase()} placement="top">
+          <div className="inspoDescription">{inspoCardObj.description.toLowerCase()} {inspoCardObj.priority ? '⭐' : null}</div>
         </Tooltip>
         <div className="inspoCardBtns">
           <button type="button" className="editInspoButton" onClick={editInspoCard}>edit</button>

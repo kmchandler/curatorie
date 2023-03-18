@@ -39,17 +39,17 @@ body {
 
 
 .profileDropdown {
-  background-color: #B4656F !important;
+  background-color: #b5baa9 !important;
   color: #d3dfe1 !important;
 }
 
 .profileDropdownBottomDiv {
-  background-color: #B4656F !important;
+  background-color: #b5baa9 !important;
   color: #d3dfe1 !important;
 }
 
 .dropdown-menu {
-  background-color: #B4656F!important;
+  background-color: #b5baa9!important;
   color: #d3dfe1 !important;
   text-align: center;
   margin-top: 10px;
@@ -178,7 +178,7 @@ body {
 .listCardDiv {
   margin-top: 25px;
   text-align: center;
-  height: 85px;
+  height: 80px;
 }
 
 .listCardBody {
@@ -209,6 +209,13 @@ body {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+}
+
+.listItem {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-top: 3px;
 }
 
 .purchasePrice {
@@ -445,6 +452,8 @@ body {
 }
 
 .giftCardBtns {
+  margin-left: auto;
+  margin-right: auto;
   margin-top: auto;
 }
 
@@ -736,6 +745,10 @@ body {
   justify-content: center;
 }
 
+.boardCardDiv:hover {
+  box-shadow: 2px 2px 5px gray;
+}
+
 .modalDots {
   margin-right: 15px;
 }
@@ -758,15 +771,19 @@ body {
 }
 
 .giftCard {
-  height: 650px;
+  height: 615px;
 }
 
 .purchaseCard {
-  height: 475px;
+  height: 525px;
 }
 
 .inspoDescription {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+}
+
+.cardDetails:hover{
+  cursor: pointer;
 }

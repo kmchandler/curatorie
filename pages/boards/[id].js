@@ -102,6 +102,8 @@ export default function IndividualBoard() {
     });
   };
 
+  console.warn(giftCards);
+
   if (boardTypeObj.type === 'gift card') {
     return (
       <div className="cardPageDiv">
