@@ -29,7 +29,7 @@ function PurchaseCard({ purchaseCardObj, boardItemId, onUpdate }) {
       <Card.Body className="purchaseCardBody">
         <div className="purchaseItem">{purchaseCardObj.item} {purchaseCardObj.priority ? '⭐' : null}</div>
         <hr />
-        <Tooltip title={purchaseCardObj.description}>
+        <Tooltip title={purchaseCardObj.description} placement="top">
           <div className="purchaseDescription">{purchaseCardObj.description}</div>
         </Tooltip>
         <div className="purchasePrice">${purchaseCardObj.price}</div>
