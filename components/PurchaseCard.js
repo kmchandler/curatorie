@@ -2,9 +2,9 @@
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Paper from '@mui/material/Paper';
-import Tooltip from '@mui/material/Tooltip';
 import { useRouter } from 'next/router';
 import { deleteSinglePurchaseCard } from '../api/purchaseCardData';
+import OverflowTooltip from './OverflowTooltip';
 
 function PurchaseCard({ purchaseCardObj, boardItemId, onUpdate }) {
   const router = useRouter();
@@ -29,9 +29,9 @@ function PurchaseCard({ purchaseCardObj, boardItemId, onUpdate }) {
       <Card.Body className="purchaseCardBody">
         <div className="purchaseItem">{purchaseCardObj.item} {purchaseCardObj.priority ? '⭐' : null}</div>
         <hr />
-        <Tooltip title={purchaseCardObj.description} placement="top">
+        <OverflowTooltip title={purchaseCardObj.description} placement="top">
           <div className="purchaseDescription">{purchaseCardObj.description}</div>
-        </Tooltip>
+        </OverflowTooltip>
         <div className="purchasePrice">${purchaseCardObj.price}</div>
         <div className="purchaseCardBtns">
           <button type="button" className="editPurchaseButton" onClick={editPurchaseCard}>edit</button>

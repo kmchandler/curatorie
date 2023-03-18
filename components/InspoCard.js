@@ -2,9 +2,9 @@
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Paper from '@mui/material/Paper';
-import Tooltip from '@mui/material/Tooltip';
 import { useRouter } from 'next/router';
 import { deleteSingleInspoCard } from '../api/inspoCardData';
+import OverflowTooltip from './OverflowTooltip';
 
 function InspoCard({ inspoCardObj, boardItemId, onUpdate }) {
   const router = useRouter();
@@ -26,9 +26,9 @@ function InspoCard({ inspoCardObj, boardItemId, onUpdate }) {
     <Paper className="cardBodyStyle inspoCard" elements={2}>
       <Card.Img className="cardImage" variant="top" src={inspoCardObj.image_url} style={{ height: '300px' }} />
       <Card.Body className="inspoCardBody">
-        <Tooltip title={inspoCardObj.description} placement="top">
+        <OverflowTooltip title={inspoCardObj.description} placement="top">
           <div className="inspoDescription">{inspoCardObj.description} {inspoCardObj.priority ? '⭐' : null}</div>
-        </Tooltip>
+        </OverflowTooltip>
         <div className="inspoCardBtns">
           <button type="button" className="editInspoButton" onClick={editInspoCard}>edit</button>
           <button type="button" className="deleteInspoButton m-2" onClick={deleteThisCard}>
