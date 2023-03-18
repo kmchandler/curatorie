@@ -10,7 +10,7 @@
 - [Video Walkthrough](#video-walkthrough)
 
 <img src="styles/curatorie_screenshot.png" alt="curatorie" title="curatorie">
-___
+
 ## Primary Features
 The primary features of this product are:
 
