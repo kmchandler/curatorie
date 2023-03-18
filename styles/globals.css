@@ -337,6 +337,7 @@ body {
   object-fit: cover;
   width: 100%;
   min-height: 50%;
+  max-height: 350px;
 }
 
 .shareRequestCardDiv {
@@ -756,7 +757,7 @@ body {
 }
 
 .giftCard {
-  height: 610px;
+  height: 650px;
 }
 
 .purchaseCard {
