@@ -2,6 +2,7 @@
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Paper from '@mui/material/Paper';
+import Tooltip from '@mui/material/Tooltip';
 import { useRouter } from 'next/router';
 import { deleteSinglePurchaseCard } from '../api/purchaseCardData';
 
@@ -28,7 +29,9 @@ function PurchaseCard({ purchaseCardObj, boardItemId, onUpdate }) {
       <Card.Body className="purchaseCardBody">
         <div className="purchaseItem">{purchaseCardObj.item} {purchaseCardObj.priority ? '⭐' : null}</div>
         <hr />
-        <div className="purchaseDescription">{purchaseCardObj.description}</div>
+        <Tooltip title={purchaseCardObj.description}>
+          <div className="purchaseDescription">{purchaseCardObj.description}</div>
+        </Tooltip>
         <div className="purchasePrice">${purchaseCardObj.price}</div>
         <div className="purchaseCardBtns">
           <button type="button" className="editPurchaseButton" onClick={editPurchaseCard}>edit</button>
