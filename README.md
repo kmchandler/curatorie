@@ -1,44 +1,110 @@
-# React/Next.js Django Auth Template
-
+# curatorie
 ## Topics
-- [Get Started](#getting-started)
-- [Starting the Project](#starting-the-project)
+- [Primary Features](#primary-features)
+- [Target Audience](#target-audience)
+- [Purpose](#purpose)
+- [Getting Started](#getting-started)
+- [Contributions](#contributions)
+- [Wireframe](#wireframe)
+- [ERDs](#ERDs)
+- [Video Walkthrough](#video-walkthrough)
+
+<img src="styles/curatorie_screenshot.png" alt="curatorie" title="curatorie">
 ___
-## Getting Started
-### Use Template
-#### 1. To get started, click the GREEN "Use this Template" button at the top of the repo
-<img width="915" alt="Screen Shot 2022-07-06 at 12 54 01 PM" src="https://user-images.githubusercontent.com/29741570/177612998-4aac9237-5a1e-4f13-8ae0-468587521564.png">
+## Primary Features
+The primary features of this product are:
 
-#### 2. Make sure YOUR github account is selected in the dropdown and name your project
-<img width="763" alt="Screen Shot 2022-07-06 at 12 54 48 PM" src="https://user-images.githubusercontent.com/29741570/177613126-dd38f678-7553-4f27-8a4a-75680f14d71e.png">
+App security:
+  * The app is setup with security via Firebase SDK
+  * The auth token is attached to the header of every api call within the app so no requests can be successfully processed if the token is not validated
+    * Non-valid users are automatically redirected to the form for creation of new users 
 
-#### 3. Clone your new repo to your local machine
-#### 4. Go to the **NEXT** section
+Create a User:
+  * Upon signin via Firebase Authentication, a new user is taken to the form for the creation of new users
+  * When the form is submitted, the user is taken to the app's homepage, where boards will be shown, once created
+  * Users can only view their own content and content that has been shared with them
 
-## Starting the Project
-1. Create a Firebase project and set up authentication. Use [these videos](https://vimeo.com/showcase/codetracker-firebase) as a refresher if needed.
-1. Create a `.env` file at the root of the project
-1. Copy/Paste the contents of the `.env.sample` file to your newly created `.env` file.
-1. Copy over all of your Firebase values into the `.env` file.
-1. Open the `package.json` file and change the `name` property to the name of your application, and `author` to  your name.
-1. From your command line, be in the root directory and run `npm install` OR `npm i` for short.
-1. Next, run `npm run prepare`. This command sets up husky to track eslint errors on commit that will make your deploy fail on Netlify.
-1. To start your application, run `npm run dev`. THIS IS THE COMMAND YOU WILL USE TO RUN YOUR DEVELOPMENT SERVER FROM NOW ON.
-1. Open [http://localhost:3000](http://localhost:3000) with your browser.
+Boards:
+  * Users can add four different types of boards to their hompage, each with its own unique info and rendering:
+    * Gift Boards:
+      * Used to track items you wish to buy as a gift for others or ask for as a gift for yourself
+      * Information gathered in this board type includes:
+        * A link to the item webpage (which redirects to that page when clicked)
+        * An url for the image you wish to display on the item card
+        * Item name
+        * Item description
+        * Item price
+        * Occasion
+        * Whether the gift is for yourself or someone else
+        * The name of the person who you plan to give the gift to (or who you plan to ask to give you the gift)
+        * Whether or not it is a favorite or priority item (favorite/priority items appear at the top of the list of cards)
+    * Inspo Boards:
+      * Used to save images and info on things you are using for inspiration, such as personal style, home decor, tattoo ideas, makeup idea, etc.
+      * Information gathered in this board type includes:
+        * An url for the image you wish to display on the card
+        * A description including additional information about how this relates to you or which part of the image you are drawn to
+        * Whether or not it is a favorite or priority item (favorite/priority items appear at the top of the list of cards)
+    * List Boards:
+      * Used to keep track of anything you would put on a list, such as to-dos, invite/rsvp lists, places you want to go, etc.
+      * This board type gathers and displays only individual list items and priority (priority items appear at the top of the list)
+    * Purchase Boards: 
+      * Used to tack items you wish to purchase in the near future
+        * Information gathered in this board type includes:
+          * A link to the item webpage (which redirects to that page when clicked)
+          * An url for the image you wish to display on the item card
+          * Item name
+          * Item description
+          * Item price
+          * Whether or not it is a favorite or priority item (favorite/priority items appear at the top of the list of cards)
+  * When the user clicks add board, they are taken to a page displaying a sample image of each board type where they select which type they would like to assign to that specific board before proceeding to the next page, where they enter the board name and select from a pre-set list of icons for the board
+  * There is no limit to the number of each type of board that a user can add
+  * Boards can be edited, deleted, and shared with other users by clicking on the three dots in the lower right corner of the board, which brings up a modal containing the repective buttons
 
-### If you see this, you are set to go!
-<img width="450" alt="Screen Shot 2022-07-06 at 1 07 27 PM" src="https://user-images.githubusercontent.com/29741570/177615077-9b6a75bc-0260-4d29-bb88-bd95a3140687.png">
+Cards:
+  * Users can add cards to each board type with specific data, based on the board type selected
+  * Once created, cards can be edited or deleted
+
+Sharing Boards:
+  * Users can share boards with other users by other users by clicking on the three dots in the lower right corner of the board, which brings up a modal containing, among others, the share button
+    * Clicking the share button takes the user to a page where they can search for users by first name, last name, username, or email address. Once they hit submit, all users matching the included criteria will appear on the page
+      * After locating the desired user, the current user can send the board by clicking on the papar airplane icon in the lower right corner
+        * If there is already an outstanding share request for that board, an error will pop up indicating that you cannot share the same board with a given user multiple times, otherwise a message will apear indicating the board was sent successfully upon the automatic re-routing to the homepage
+
+Managing Share Requests:
+  * When a user receives a request from another user wishing to share a board with them, a badge will appear on the share requests link in the navbar, indicating the number of outstanding share requests
+    * If a user clicks on the share requests link, they will be taken to a page containing all boards that have been sent to them, with an option to accept or decline the invitation. If they accept the invitation, the board will be added to their shared boards page, and both users will be able to view, edit, and delete the board. If they reject the invitation, the request will be removed, and the user will lose access to the board
 
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Target Audience
+The target audience for this app is anyone who finds themself scrolling through multiple streaming apps, wasting precious time trying to decide what they want to watch.
 
-**NOTES:** 
-- If you see the following error, you did not follow all the setup steps correctly and failed to add your Firebase creds. Go back and do that NOW.
+## Purpose
+This app is designed to answer the question “What do I want to watch?” It is intended to eliminate the need for scrolling through multiple streaming services in order to get ideas, as well as keep track of recommendations and watchlists. 
 
-<img width="1043" alt="Screen Shot 2022-07-06 at 11 18 45 AM" src="https://user-images.githubusercontent.com/29741570/177612501-c2628f18-4bbd-4de9-aae6-27ffba1172d6.png">
+## Try curatorie
+1. Create a Firebase project and set up authentication. 
+2. Clone the project to your machine - git@github.com:kmchandler/curatorie.git and go into the project directory
+3. Create a `.env` file at the root of the project
+4. Copy/Paste the following keys into your newly created `.env` file:
+```
+NEXT_PUBLIC_FIREBASE_API_KEY=""
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=""
+NEXT_PUBLIC_DATABASE_URL="http://localhost:8000"
+```
+5. Copy over the respective Firebase values from Project Settings - General into the `.env` file.
+6. From your command line, be in the root directory and run `npm install` OR `npm i` for short.
+7. Next, run `npm run prepare`.
+8. To start the application, run `npm run dev` (NOTE: In order for the application to work, you will also need to have the backend repo cloned on your machine and the server running. The repo can be found [here](https://github.com/kmchandler/curatorie-server).)
+9. Open [http://localhost:3000](http://localhost:3000) with your browser.
+
+## Contributions
+This app was created by Kristen Chandler
+https://github.com/kmchandler
+
+## Wireframe
+[Link to curatorie wireframe](https://whimsical.com/curatorie-5YYsV6WVUYTPYrDfs7u1Zu)
+
+## ERD
+<img src="styles/curatorie_ERD.png" alt="ERD" title="ERD">
         
-## Learn More about Next.js
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Video Walkthrough
