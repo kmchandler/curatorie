@@ -76,10 +76,10 @@ Managing Share Requests:
 
 
 ## Target Audience
-The target audience for this app is anyone who finds themself scrolling through multiple streaming apps, wasting precious time trying to decide what they want to watch.
+This app is for anyone who finds themselves struggling to keep track of ideas and information. This might look like stacks of paper cluttering your space or finding yourself drowning in countless screenshots and opened browser tabs on your phone and computer.
 
 ## Purpose
-This app is designed to answer the question “What do I want to watch?” It is intended to eliminate the need for scrolling through multiple streaming services in order to get ideas, as well as keep track of recommendations and watchlists. 
+curatorie is designed to help the user keep track of wish lists, to-dos, inspiration, etc. as they curate and manage their life.
 
 ## Try curatorie
 1. Create a Firebase project and set up authentication. 
