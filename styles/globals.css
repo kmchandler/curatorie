@@ -768,14 +768,23 @@ body {
 
 .inspoCard {
   height: 400px;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 5px;
 }
 
 .giftCard {
   height: 615px;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 5px;
 }
 
 .purchaseCard {
   height: 525px;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 5px;
 }
 
 .inspoDescription {

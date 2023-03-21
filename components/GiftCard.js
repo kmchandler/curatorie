@@ -31,7 +31,7 @@ function GiftCard({ giftCardObj, boardItemId, onUpdate }) {
       <Card.Body className="giftCardBody">
         <div className="giftItem">{giftCardObj.item.toLowerCase()} {giftCardObj.priority ? '⭐' : null}</div>
         <hr />
-        <Tooltip title={giftCardObj.description.toLowerCase()} placement="top">
+        <Tooltip title={giftCardObj.description.toLowerCase()} disableHoverListener={giftCardObj.description.length < 40} placement="top">
           <div className="giftDescription">{giftCardObj.description.toLowerCase()}</div>
         </Tooltip>
         <div className="giftPrice">${giftCardObj.price}</div>
