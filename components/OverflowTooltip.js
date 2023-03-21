@@ -20,14 +20,15 @@ const OverflowTooltip = ({ children }) => {
 
   useEffect(() => {
     checkOverflow();
-    window.addEventListener('resize', checkOverflow);
-    return () => {
-      window.removeEventListener('resize', checkOverflow);
-    };
+    // window.addEventListener('resize', checkOverflow);
+    // return () => {
+    //   window.removeEventListener('resize', checkOverflow);
+    // };
   }, []);
 
+  console.warn(isOverflowed);
   return (
-    <Tooltip title={children} disableHoverListener={!isOverflowed}>
+    <Tooltip title={children} disableHoverListener={isOverflowed}>
       <span
         ref={textElementRef}
         style={{
